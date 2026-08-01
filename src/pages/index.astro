@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DocCard from '../components/DocCard.astro';
+import { site, withBase } from '../lib/site';
+
+const docs = (await getCollection('docs', ({ data }) => data.published))
+  .sort((a, b) => a.data.collectionOrder - b.data.collectionOrder || a.data.order - b.data.order);
+
+const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
+  id: doc.data.collection,
+  title: doc.data.collectionTitle,
+  description: doc.data.collectionDescription,
+  order: doc.data.collectionOrder,
+  notice: doc.data.collectionNotice,
+}])).values()].sort((a, b) => a.order - b.order);
+---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <section class="hero">
+      <p class="hero-kicker">Markdown-first knowledge notes</p>
+      <h1>{site.title}</h1>
+      <p class="hero-copy">{site.description}</p>
+      <div class="hero-actions">
+        <a class="button-primary" href="#notes">浏览笔记 <span aria-hidden="true">↓</span></a>
+        <a class="button-secondary" href={site.links.github} target="_blank" rel="noopener">查看仓库 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section id="notes" class="notes">
+      {collections.map((collection) => (
+        <div class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">知识集合</p>
+              <h2><a class="collection-link" href={withBase(`/collections/${collection.id}/`)}>{collection.title}</a></h2>
+              <p>{collection.description}</p>
+            </div>
+            <a class="collection-count" href={withBase(`/collections/${collection.id}/`)}>
+              {docs.filter((doc) => doc.data.collection === collection.id).length} 篇
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          {collection.notice && (
+            <div class="safety-note">
+              <strong>阅读提示</strong>
+              <span>{collection.notice}</span>
+            </div>
+          )}
+          <div class="card-grid">
+            {docs.filter((doc) => doc.data.collection === collection.id).map((doc) => (
+              <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

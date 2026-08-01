@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import { site } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href={`${site.base}/favicon.svg`} />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('knowledge-site-theme');
+        const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = stored || (dark ? 'dark' : 'light');
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

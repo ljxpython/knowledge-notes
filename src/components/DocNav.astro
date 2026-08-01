@@ -1,0 +1,22 @@
+---
+import { withBase } from '../lib/site';
+
+interface Item {
+  collection: string;
+  id: string;
+  title: string;
+  section?: string;
+}
+
+interface Props {
+  prev: Item | null;
+  next: Item | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+<nav class="doc-nav" aria-label="Document navigation">
+  {prev ? <a href={withBase(`/docs/${prev.collection}/${prev.id}/`)}><small>Previous{prev.section ? ` / ${prev.section}` : ''}</small><span>{prev.title}</span></a> : <span></span>}
+  {next ? <a href={withBase(`/docs/${next.collection}/${next.id}/`)} class="next"><small>Next{next.section ? ` / ${next.section}` : ''}</small><span>{next.title}</span></a> : <span></span>}
+</nav>

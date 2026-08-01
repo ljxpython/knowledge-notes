@@ -1,0 +1,57 @@
+---
+interface Props {
+  headings: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { headings } = Astro.props;
+const items = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+{items.length > 0 && (
+  <>
+    <details class="toc-mobile">
+      <summary>本页目录</summary>
+      <ul>
+        {items.map((item) => (
+          <li class:list={{ nested: item.depth === 3 }}>
+            <a href={`#${item.slug}`} data-toc={item.slug}>{item.text}</a>
+          </li>
+        ))}
+      </ul>
+    </details>
+    <nav class="toc-desktop" aria-label="本页目录">
+      <p>本页目录</p>
+      <ul>
+        {items.map((item) => (
+          <li class:list={{ nested: item.depth === 3 }}>
+            <a href={`#${item.slug}`} data-toc={item.slug}>{item.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </>
+)}
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc]')];
+  const byId = new Map<string, HTMLAnchorElement[]>();
+  for (const link of links) {
+    const id = link.dataset.toc;
+    if (!id) continue;
+    byId.set(id, [...(byId.get(id) ?? []), link]);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    const current = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (!current) return;
+    links.forEach((link) => link.removeAttribute('aria-current'));
+    (byId.get(current.target.id) ?? []).forEach((link) => link.setAttribute('aria-current', 'location'));
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  [...byId.keys()]
+    .map((id) => document.getElementById(id))
+    .filter((node): node is HTMLElement => node !== null)
+    .forEach((node) => observer.observe(node));
+</script>

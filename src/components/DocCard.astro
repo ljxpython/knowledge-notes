@@ -1,0 +1,22 @@
+---
+import { withBase } from '../lib/site';
+
+interface Props {
+  collection: string;
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+}
+
+const { collection, id, title, description, order } = Astro.props;
+---
+
+<a href={withBase(`/docs/${collection}/${id}/`)} class="doc-card">
+  <span class="card-index">{String(order).padStart(2, '0')}</span>
+  <div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <span class="card-arrow" aria-hidden="true">↗</span>
+</a>

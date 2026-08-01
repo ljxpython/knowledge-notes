@@ -1,0 +1,132 @@
+{
+  "collections": [
+    {
+      "id": "langgraph-langchain",
+      "title": "LangGraph / LangChain 工程实践",
+      "description": "基于 Open Deep Research 主实现，系统学习 LangGraph 与 LangChain 的工程用法。",
+      "order": 1,
+      "sourceLabel": "查看源文档",
+      "sourceUrl": "https://github.com/ljxpython/open_deep_research/tree/main/docs/langgraph-langchain-learning",
+      "notice": "本站只展示学习文档。文中的 Python、模型、搜索和 MCP 命令均不会在构建或部署时执行；手动运行可能需要密钥并产生费用。"
+    }
+  ],
+  "documents": {
+    "01-real-model-agent": {
+      "collection": "langgraph-langchain",
+      "title": "第 1 章：真实模型与消息",
+      "description": "init_chat_model、消息对象与一次真实 ainvoke 调用。",
+      "section": "基础篇",
+      "order": 1,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/01-real-model-agent.md"
+    },
+    "02-state-and-command": {
+      "collection": "langgraph-langchain",
+      "title": "第 2 章：状态与动态路由",
+      "description": "MessagesState、reducer、StateGraph 与 Command 路由。",
+      "section": "基础篇",
+      "order": 2,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/02-state-and-command.md"
+    },
+    "03-structured-output": {
+      "collection": "langgraph-langchain",
+      "title": "第 3 章：结构化输出",
+      "description": "Pydantic schema 与 with_structured_output 的可控决策。",
+      "section": "基础篇",
+      "order": 3,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/03-structured-output.md"
+    },
+    "04-tool-loop": {
+      "collection": "langgraph-langchain",
+      "title": "第 4 章：工具循环",
+      "description": "工具绑定、ToolMessage 与真实 ReAct 闭环。",
+      "section": "基础篇",
+      "order": 4,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/04-tool-loop.md"
+    },
+    "05-search-and-mcp": {
+      "collection": "langgraph-langchain",
+      "title": "第 5 章：搜索与 MCP",
+      "description": "搜索工具、MCP 装配与外部工具边界。",
+      "section": "基础篇",
+      "order": 5,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/05-search-and-mcp.md"
+    },
+    "06-subgraphs-and-concurrency": {
+      "collection": "langgraph-langchain",
+      "title": "第 6 章：子图与并发",
+      "description": "supervisor/researcher 子图、asyncio.gather 与汇总。",
+      "section": "编排篇",
+      "order": 6,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/06-subgraphs-and-concurrency.md"
+    },
+    "07-persistence-streaming-observability": {
+      "collection": "langgraph-langchain",
+      "title": "第 7 章：持久化、流式与观测",
+      "description": "checkpointer、thread_id、LangSmith 与事件流。",
+      "section": "编排篇",
+      "order": 7,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/07-persistence-streaming-observability.md"
+    },
+    "08-integrated-mini-researcher": {
+      "collection": "langgraph-langchain",
+      "title": "第 8 章：综合迷你研究员",
+      "description": "把前七章知识点串成离线 mini researcher。",
+      "section": "编排篇",
+      "order": 8,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/08-integrated-mini-researcher.md"
+    },
+    "09-coverage-matrix": {
+      "collection": "langgraph-langchain",
+      "title": "第 9 章：项目知识覆盖矩阵",
+      "description": "将概念、项目源码和真实示例映射为学习矩阵。",
+      "section": "工程篇",
+      "order": 9,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/09-coverage-matrix.md"
+    },
+    "10-end-to-end-workflow": {
+      "collection": "langgraph-langchain",
+      "title": "第 10 章：从用户问题到最终报告的完整链路",
+      "description": "追踪澄清、简报、并发研究和报告生成的数据流。",
+      "section": "工程篇",
+      "order": 10,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/10-end-to-end-workflow.md"
+    },
+    "11-configuration-security-and-runtime": {
+      "collection": "langgraph-langchain",
+      "title": "第 11 章：配置、密钥、身份与运行时边界",
+      "description": "RunnableConfig、密钥来源、MCP 和 owner 授权边界。",
+      "section": "工程篇",
+      "order": 11,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/11-configuration-security-and-runtime.md"
+    },
+    "12-resilience-testing-and-migration": {
+      "collection": "langgraph-langchain",
+      "title": "第 12 章：容错、测试、评估与升级判断",
+      "description": "重试、上下文限制、并发异常和 API 升级策略。",
+      "section": "工程篇",
+      "order": 12,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/12-resilience-testing-and-migration.md"
+    },
+    "13-code-reading-exercises": {
+      "collection": "langgraph-langchain",
+      "title": "第 13 章：源码阅读练习",
+      "description": "围绕 reducer、工具协议、配置和异常路径的练习。",
+      "section": "工程篇",
+      "order": 13,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/13-code-reading-exercises.md"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Prose from '../components/Prose.astro';
+import ContentsRail from '../components/ContentsRail.astro';
+import DocNav from '../components/DocNav.astro';
+import ResourceLinks from '../components/ResourceLinks.astro';
+import { site, withBase } from '../lib/site';
+
+interface Resource {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  id: string;
+  collection: string;
+  collectionTitle: string;
+  collectionNotice?: string;
+  collectionSourceLabel?: string;
+  collectionSourceUrl?: string;
+  title: string;
+  description: string;
+  section?: string;
+  order: number;
+  source?: string;
+  resources: Resource[];
+  headings: Array<{ depth: number; slug: string; text: string }>;
+  prev: { collection: string; id: string; title: string; section?: string } | null;
+  next: { collection: string; id: string; title: string; section?: string } | null;
+}
+
+const { id, collectionTitle, collectionNotice, collectionSourceLabel, collectionSourceUrl, title, description, section, order, source, resources, headings, prev, next } = Astro.props;
+const sourceUrl = source ?? collectionSourceUrl ?? `${site.repositoryUrl}/blob/main/content/${id}.md`;
+const sourceLabel = collectionSourceLabel ?? site.navigation.sourceLabel;
+---
+
+<BaseLayout title={`${title} | ${site.title}`} description={description}>
+  <Header />
+  <main class="doc-shell">
+    <article class="doc">
+      <ContentsRail headings={headings} />
+      <header class="doc-header">
+        <div class="eyebrow">
+          <span>{section ?? collectionTitle}</span>
+          <span>Note {String(order).padStart(2, '0')}</span>
+        </div>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <div class="doc-meta">
+          <a href={withBase('/')} class="quiet-link">全部笔记</a>
+          <a href={sourceUrl} target="_blank" rel="noopener" class="quiet-link">{sourceLabel}</a>
+        </div>
+      </header>
+
+      {collectionNotice && (
+        <aside class="safety-note doc-safety">
+          <strong>代码执行提示</strong>
+          <span>{collectionNotice}</span>
+        </aside>
+      )}
+      <Prose><slot /></Prose>
+      <ResourceLinks resources={resources} />
+      <DocNav prev={prev} next={next} />
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

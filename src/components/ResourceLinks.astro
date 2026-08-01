@@ -1,0 +1,16 @@
+---
+interface Props {
+  resources: Array<{ label: string; url: string }>;
+}
+
+const { resources } = Astro.props;
+---
+
+{resources.length > 0 && (
+  <section class="resources">
+    <h2>相关资源</h2>
+    <ul>
+      {resources.map((resource) => <li><a href={resource.url} target="_blank" rel="noopener">{resource.label} <span aria-hidden="true">↗</span></a></li>)}
+    </ul>
+  </section>
+)}

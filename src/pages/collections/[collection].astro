@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DocCard from '../../components/DocCard.astro';
+import { site, withBase } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const docs = (await getCollection('docs', ({ data }) => data.published))
+    .sort((a, b) => a.data.collectionOrder - b.data.collectionOrder || a.data.order - b.data.order);
+  const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
+    id: doc.data.collection,
+    title: doc.data.collectionTitle,
+    description: doc.data.collectionDescription,
+    order: doc.data.collectionOrder,
+    notice: doc.data.collectionNotice,
+  }])).values()].sort((a, b) => a.order - b.order);
+
+  return collections.map((collection) => ({
+    params: { collection: collection.id },
+    props: {
+      collection,
+      docs: docs.filter((doc) => doc.data.collection === collection.id),
+    },
+  }));
+}
+
+const { collection, docs } = Astro.props;
+---
+
+<BaseLayout title={`${collection.title} | ${site.title}`} description={collection.description}>
+  <Header />
+  <main class="notes collection-page">
+    <section class="section-block">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">知识集合</p>
+          <h1>{collection.title}</h1>
+          <p>{collection.description}</p>
+        </div>
+        <a class="collection-count" href={withBase('/')}>全部集合</a>
+      </div>
+      {collection.notice && (
+        <div class="safety-note">
+          <strong>阅读提示</strong>
+          <span>{collection.notice}</span>
+        </div>
+      )}
+      <div class="card-grid">
+        {docs.map((doc) => (
+          <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
