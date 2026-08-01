@@ -4,14 +4,12 @@
 
 当前 LangGraph / LangChain 源文档来自：
 
-```text
-/Users/lijiaxin/PyCharmMiscProject/research/open_deep_research/docs/langgraph-langchain-learning
-```
+[`open_deep_research/docs/langgraph-langchain-learning`](https://github.com/ljxpython/open_deep_research/tree/main/docs/langgraph-langchain-learning)
 
 ## 刷新内容
 
 ```bash
-npm run import:course
+npm run import:course -- /path/to/langgraph-langchain-learning
 npm run assets:check
 npm test
 npm run build
@@ -27,14 +25,11 @@ npm run build
 
 ```bash
 npm install
-npm run import:course
 npm run dev
 ```
 
-## 项目位置
+导入源文档
 
-```text
-/Users/lijiaxin/PyCharmMiscProject/research/knowledge-notes
-```
+导入脚本需要显式传入源目录，也可以使用 `OPEN_DEEP_RESEARCH_DOCS` 环境变量。仓库内已包含生成后的 Markdown，普通构建和预览不需要源文档目录。
 
-目标仓库名：`knowledge-notes`。
+仓库地址：[github.com/ljxpython/knowledge-notes](https://github.com/ljxpython/knowledge-notes)。

@@ -4,7 +4,6 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outputDir = resolve(root, 'content');
-const defaultSourceDir = '/Users/lijiaxin/PyCharmMiscProject/research/open_deep_research/docs/langgraph-langchain-learning';
 const sourceRepo = 'https://github.com/ljxpython/open_deep_research';
 const siteBase = '/knowledge-notes';
 const collectionId = 'langgraph-langchain';
@@ -71,7 +70,11 @@ export function rewriteMarkdown(markdown, sourceFile) {
   });
 }
 
-export function importCourse(sourceDir = process.env.OPEN_DEEP_RESEARCH_DOCS || defaultSourceDir) {
+export function importCourse(sourceDir = process.env.OPEN_DEEP_RESEARCH_DOCS) {
+  if (!sourceDir) {
+    throw new Error('Pass the source directory as an argument or set OPEN_DEEP_RESEARCH_DOCS.');
+  }
+
   for (const [id] of chapters) {
     const file = resolve(sourceDir, `${id}.md`);
     if (!existsSync(file)) throw new Error(`Missing course chapter: ${file}`);
@@ -103,5 +106,5 @@ export function importCourse(sourceDir = process.env.OPEN_DEEP_RESEARCH_DOCS || 
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  importCourse();
+  importCourse(process.argv[2] || process.env.OPEN_DEEP_RESEARCH_DOCS);
 }
