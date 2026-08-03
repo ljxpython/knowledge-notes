@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import DocCard from '../../components/DocCard.astro';
+import TopicGroups from '../../components/TopicGroups.astro';
 import { site, withBase } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -47,11 +48,15 @@ const { collection, docs } = Astro.props;
           <span>{collection.notice}</span>
         </div>
       )}
-      <div class="card-grid">
-        {docs.map((doc) => (
-          <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
-        ))}
-      </div>
+      {collection.id === 'deep-agents' ? (
+        <TopicGroups docs={docs} />
+      ) : (
+        <div class="card-grid">
+          {docs.map((doc) => (
+            <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+          ))}
+        </div>
+      )}
     </section>
   </main>
   <Footer />

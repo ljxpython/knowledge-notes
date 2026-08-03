@@ -25,16 +25,22 @@ research_model = (
     configurable_model
     .with_structured_output(ResearchQuestion)
     .with_retry(stop_after_attempt=configurable.max_structured_output_retries)
-    .with_config(research_model_config)
+    .with_config({
+        "configurable": research_model_config,
+        "tags": ["langsmith:nostream"],
+    })
 )
-response = await research_model.ainvoke([HumanMessage(content=prompt_content)])
+response = await research_model.ainvoke(
+    [HumanMessage(content=prompt_content)],
+    config=config,
+)
 ```
 
 注意这个顺序：先把模型包装成结构化输出，再加重试和运行时配置。返回值已经是 Pydantic 对象，不是 `AIMessage`。
 
 ## 最小真实 Agent
 
-示例文件：[03_structured_output.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/03_structured_output.py)。
+示例文件：[03_structured_output.py](/knowledge-notes/examples/langgraph-langchain/examples/03_structured_output.py)。
 
 ```python
 class TopicBrief(BaseModel):
@@ -66,7 +72,7 @@ Field 的 `description` 很重要，尤其给模型看的工具参数和结构�
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/03_structured_output.py
+uv run python docs/langgraph-learning/examples/03_structured_output.py
 ```
 
 预期现象：终端输出一段 JSON，至少包含 `title`、`research_question`、`needs_tools` 三个字段。它不是 mock，是模型按 Pydantic schema 生成并通过解析后的对象。

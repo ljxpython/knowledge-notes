@@ -20,7 +20,7 @@
 
 要求：每一步写出对应的 state 字段、写它的节点、消费它的节点，以及 reducer 是追加还是覆盖。
 
-验证：运行第 [8 章](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/08_integrated_mini_researcher.py) 的真实 Agent 示例，给每个节点返回的 state update 打印一个键名列表。不要打印 API Key 或整段长工具输出。
+验证：运行第 [8 章](/knowledge-notes/examples/langgraph-langchain/examples/08_integrated_mini_researcher.py) 的真实 Agent 示例，给每个节点返回的 state update 打印一个键名列表。不要打印 API Key 或整段长工具输出。
 
 ## 练习 2：为什么项目有三套消息历史
 
@@ -34,7 +34,7 @@
 
 问题：如果用同一个 `messages` 承担三种职责，最终报告 prompt 会多出什么噪声？哪个子图会误读父图上下文？
 
-验证：运行第 [6 章](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/06_subgraphs_and_concurrency.py)。观察两个子图的结果是否分别回到各自的收集位置。
+验证：运行第 [6 章](/knowledge-notes/examples/langgraph-langchain/examples/06_subgraphs_and_concurrency.py)。观察两个子图的结果是否分别回到各自的收集位置。
 
 ## 练习 3：手算 reducer 的结果
 
@@ -55,7 +55,7 @@ override_reducer(current, replace) -> ["only-this"]
 
 再解释为什么 `supervisor_messages` 的初始 system prompt 必须用 override。
 
-验证：运行第 [2 章](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/02_state_and_command.py) 的真实 `Command` 示例；模型调用验证路由，手算验证 reducer 的确定性语义。
+验证：运行第 [2 章](/knowledge-notes/examples/langgraph-langchain/examples/02_state_and_command.py) 的真实 `Command` 示例；模型调用验证路由，手算验证 reducer 的确定性语义。
 
 ## 练习 4：工具协议的最小不变量
 
@@ -75,24 +75,24 @@ ToolMessage(
 2. `execute_tool_safely` 为什么返回错误文本而不是直接抛异常？
 3. 原生 web search 为什么不在 `tools_by_name` 中再执行一遍？
 
-验证：运行第 [4 章](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/04_tool_loop.py)，确认模型返回工具请求、代码执行工具、模型再根据 `ToolMessage` 完成回答这一完整闭环。
+验证：运行第 [4 章](/knowledge-notes/examples/langgraph-langchain/examples/04_tool_loop.py)，确认模型返回工具请求、代码执行工具、模型再根据 `ToolMessage` 完成回答这一完整闭环。
 
 ## 练习 5：定位配置覆盖问题
 
 假设调用方传入：
 
 ```python
-config = {"configurable": {"search_api": "none"}}
+context = Configuration(search_api="none")
 ```
 
 但程序仍在使用 Tavily。检查顺序应是：
 
-1. `SEARCH_API` 环境变量是否已设置。
-2. `Configuration.from_runnable_config` 如何生成值。
-3. `get_all_tools` 如何把 `search_api` 转成 `SearchAPI`。
+1. `context.search_api` 是否确实为 `SearchAPI.NONE`。
+2. `Configuration.from_env()` 创建 context 时是否读到了 `SEARCH_API` 环境变量。
+3. `get_all_tools(context, store)` 如何使用 `search_api`。
 4. `get_search_tool` 返回了哪些工具。
 
-验证：先执行第 11 章的最小配置检查，再运行第 [5 章](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/05_search_and_mcp.py)。后者只装配并调用 `think_tool`，不会触发真实搜索。
+验证：先执行第 11 章的最小配置检查，再运行第 [5 章](/knowledge-notes/examples/langgraph-langchain/examples/05_search_and_mcp.py)。后者只装配并调用 `think_tool`，不会触发真实搜索。
 
 ## 练习 6：画出异常传播边界
 
@@ -106,7 +106,7 @@ config = {"configurable": {"search_api": "none"}}
 | `supervisor_tools` | 当前代码中任意 researcher 异常会结束图 |
 | `final_report_generation` | token 超限时缩短 findings；其他异常返回错误报告 |
 
-验证：不调用外部搜索。直接阅读第 [12 章](/knowledge-notes/docs/langgraph-langchain/12-resilience-testing-and-migration/) 的对应路径，并用第 [7 章](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/07_persistence_streaming_observability.py) 的事件流理解“错误在哪个节点发生”。
+验证：不调用外部搜索。直接阅读第 [12 章](/knowledge-notes/docs/langgraph-langchain/12-resilience-testing-and-migration/) 的对应路径，并用第 [7 章](/knowledge-notes/examples/langgraph-langchain/examples/07_persistence_streaming_observability.py) 的事件流理解“错误在哪个节点发生”。
 
 ## 练习 7：为一个修复选择正确的测试
 

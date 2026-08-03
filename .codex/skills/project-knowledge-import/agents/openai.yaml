@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目知识文档导入"
+  short_description: "将多源技术文档、示例源码和链接转换为可维护项目知识库"
+  default_prompt: "使用 $project-knowledge-import 将这些技术文档和示例源码导入当前知识库。"

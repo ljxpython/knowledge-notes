@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DocCard from '../components/DocCard.astro';
+import TopicGroups from '../components/TopicGroups.astro';
 import { site, withBase } from '../lib/site';
 
 const docs = (await getCollection('docs', ({ data }) => data.published))
@@ -51,11 +52,18 @@ const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
               <span>{collection.notice}</span>
             </div>
           )}
-          <div class="card-grid">
-            {docs.filter((doc) => doc.data.collection === collection.id).map((doc) => (
-              <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
-            ))}
-          </div>
+          <details class="collection-documents">
+            <summary>在首页展开文档 <span class="topic-toggle" aria-hidden="true"></span></summary>
+            {collection.id === 'deep-agents' ? (
+              <TopicGroups docs={docs.filter((doc) => doc.data.collection === collection.id)} />
+            ) : (
+              <div class="card-grid">
+                {docs.filter((doc) => doc.data.collection === collection.id).map((doc) => (
+                  <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+                ))}
+              </div>
+            )}
+          </details>
         </div>
       ))}
     </section>

@@ -35,7 +35,7 @@ return Command(
 
 ## 最小真实 Agent
 
-示例文件：[02_state_and_command.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/02_state_and_command.py)。
+示例文件：[02_state_and_command.py](/knowledge-notes/examples/langgraph-langchain/examples/02_state_and_command.py)。
 
 ```python
 class LearningState(MessagesState):
@@ -69,7 +69,7 @@ return Command(
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/02_state_and_command.py
+uv run python docs/langgraph-learning/examples/02_state_and_command.py
 ```
 
 预期现象：

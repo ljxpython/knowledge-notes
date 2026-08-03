@@ -1,16 +1,34 @@
 ---
+import { readFileSync } from 'node:fs';
+import { relative, resolve, sep } from 'node:path';
+
 interface Props {
   resources: Array<{ label: string; url: string }>;
 }
 
 const { resources } = Astro.props;
+const publicDir = resolve(process.cwd(), 'public');
+const siteBase = '/knowledge-notes';
+const renderedResources = resources.map((resource) => {
+  if (!resource.url.startsWith(`${siteBase}/examples/`)) return resource;
+  const file = resolve(publicDir, resource.url.slice(siteBase.length + 1));
+  if (!file.startsWith(`${publicDir}${sep}`)) return resource;
+  return { ...resource, code: readFileSync(file, 'utf8'), path: relative(publicDir, file) };
+});
 ---
 
-{resources.length > 0 && (
+{renderedResources.length > 0 && (
   <section class="resources">
     <h2>相关资源</h2>
     <ul>
-      {resources.map((resource) => <li><a href={resource.url} target="_blank" rel="noopener">{resource.label} <span aria-hidden="true">↗</span></a></li>)}
+      {renderedResources.map((resource) => resource.code ? (
+        <li>
+          <details class="resource-code">
+            <summary>{resource.label} <span class="topic-toggle" aria-hidden="true"></span></summary>
+            <pre><code>{resource.code}</code></pre>
+          </details>
+        </li>
+      ) : <li><a href={resource.url} target="_blank" rel="noopener">{resource.label} <span aria-hidden="true">↗</span></a></li>)}
     </ul>
   </section>
 )}

@@ -22,7 +22,7 @@
 
 ## 最小真实 Agent
 
-示例文件：[08_integrated_mini_researcher.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/08_integrated_mini_researcher.py)。
+示例文件：[08_integrated_mini_researcher.py](/knowledge-notes/examples/langgraph-langchain/examples/08_integrated_mini_researcher.py)。
 
 流程：
 
@@ -50,7 +50,7 @@ researcher_agent
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/08_integrated_mini_researcher.py
+uv run python docs/langgraph-learning/examples/08_integrated_mini_researcher.py
 ```
 
 预期现象：

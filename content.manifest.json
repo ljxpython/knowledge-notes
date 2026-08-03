@@ -6,8 +6,26 @@
       "description": "基于 Open Deep Research 主实现，系统学习 LangGraph 与 LangChain 的工程用法。",
       "order": 1,
       "sourceLabel": "查看源文档",
-      "sourceUrl": "https://github.com/ljxpython/open_deep_research/tree/main/docs/langgraph-langchain-learning",
+      "sourceUrl": "https://github.com/ljxpython/open_deep_research/tree/main/docs/langgraph-learning",
       "notice": "本站只展示学习文档。文中的 Python、模型、搜索和 MCP 命令均不会在构建或部署时执行；手动运行可能需要密钥并产生费用。"
+    },
+    {
+      "id": "langchain-v1",
+      "title": "LangChain v1 Agent 学习路线",
+      "description": "围绕 LangChain v1 的 create_agent、消息、工具、记忆、中间件和子 Agent 学习。",
+      "order": 2,
+      "sourceLabel": "查看源文档",
+      "sourceUrl": "https://github.com/ljxpython/open_deep_research/tree/main/docs/langchain",
+      "notice": "本站只展示学习文档。示例不会在构建或部署时执行；手动运行可能需要 API Key 并产生模型费用。"
+    },
+    {
+      "id": "deep-agents",
+      "title": "Deep Agents 工程教学",
+      "description": "从 skills、memory、backend、middleware 到多 Agent、HITL、前端和 A2A 的 Deep Agents 实践。",
+      "order": 3,
+      "sourceLabel": "查看源文档",
+      "sourceUrl": "https://github.com/ljxpython/langgraph_teach/tree/main/deepagent_src",
+      "notice": "本站只展示教学文档和静态源码。不会执行示例、启动服务、访问模型、数据库或其他外部系统。"
     }
   ],
   "documents": {
@@ -18,7 +36,13 @@
       "section": "基础篇",
       "order": 1,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/01-real-model-agent.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/01-real-model-agent.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/01_real_model_agent.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/01_real_model_agent.py"
+        }
+      ]
     },
     "02-state-and-command": {
       "collection": "langgraph-langchain",
@@ -27,7 +51,13 @@
       "section": "基础篇",
       "order": 2,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/02-state-and-command.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/02-state-and-command.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/02_state_and_command.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/02_state_and_command.py"
+        }
+      ]
     },
     "03-structured-output": {
       "collection": "langgraph-langchain",
@@ -36,7 +66,13 @@
       "section": "基础篇",
       "order": 3,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/03-structured-output.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/03-structured-output.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/03_structured_output.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/03_structured_output.py"
+        }
+      ]
     },
     "04-tool-loop": {
       "collection": "langgraph-langchain",
@@ -45,7 +81,13 @@
       "section": "基础篇",
       "order": 4,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/04-tool-loop.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/04-tool-loop.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/04_tool_loop.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/04_tool_loop.py"
+        }
+      ]
     },
     "05-search-and-mcp": {
       "collection": "langgraph-langchain",
@@ -54,7 +96,13 @@
       "section": "基础篇",
       "order": 5,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/05-search-and-mcp.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/05-search-and-mcp.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/05_search_and_mcp.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/05_search_and_mcp.py"
+        }
+      ]
     },
     "06-subgraphs-and-concurrency": {
       "collection": "langgraph-langchain",
@@ -63,7 +111,13 @@
       "section": "编排篇",
       "order": 6,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/06-subgraphs-and-concurrency.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/06-subgraphs-and-concurrency.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/06_subgraphs_and_concurrency.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/06_subgraphs_and_concurrency.py"
+        }
+      ]
     },
     "07-persistence-streaming-observability": {
       "collection": "langgraph-langchain",
@@ -72,7 +126,13 @@
       "section": "编排篇",
       "order": 7,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/07-persistence-streaming-observability.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/07-persistence-streaming-observability.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/07_persistence_streaming_observability.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/07_persistence_streaming_observability.py"
+        }
+      ]
     },
     "08-integrated-mini-researcher": {
       "collection": "langgraph-langchain",
@@ -81,7 +141,13 @@
       "section": "编排篇",
       "order": 8,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/08-integrated-mini-researcher.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/08-integrated-mini-researcher.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/08_integrated_mini_researcher.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/08_integrated_mini_researcher.py"
+        }
+      ]
     },
     "09-coverage-matrix": {
       "collection": "langgraph-langchain",
@@ -90,7 +156,45 @@
       "section": "工程篇",
       "order": 9,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/09-coverage-matrix.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/09-coverage-matrix.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/01_real_model_agent.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/01_real_model_agent.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/02_state_and_command.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/02_state_and_command.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/03_structured_output.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/03_structured_output.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/04_tool_loop.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/04_tool_loop.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/05_search_and_mcp.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/05_search_and_mcp.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/06_subgraphs_and_concurrency.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/06_subgraphs_and_concurrency.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/07_persistence_streaming_observability.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/07_persistence_streaming_observability.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/08_integrated_mini_researcher.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/08_integrated_mini_researcher.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/10_multi_agent_handoff.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/10_multi_agent_handoff.py"
+        }
+      ]
     },
     "10-end-to-end-workflow": {
       "collection": "langgraph-langchain",
@@ -99,7 +203,8 @@
       "section": "工程篇",
       "order": 10,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/10-end-to-end-workflow.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/10-end-to-end-workflow.md",
+      "resources": []
     },
     "11-configuration-security-and-runtime": {
       "collection": "langgraph-langchain",
@@ -108,7 +213,8 @@
       "section": "工程篇",
       "order": 11,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/11-configuration-security-and-runtime.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/11-configuration-security-and-runtime.md",
+      "resources": []
     },
     "12-resilience-testing-and-migration": {
       "collection": "langgraph-langchain",
@@ -117,7 +223,8 @@
       "section": "工程篇",
       "order": 12,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/12-resilience-testing-and-migration.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/12-resilience-testing-and-migration.md",
+      "resources": []
     },
     "13-code-reading-exercises": {
       "collection": "langgraph-langchain",
@@ -126,7 +233,1622 @@
       "section": "工程篇",
       "order": 13,
       "published": true,
-      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/13-code-reading-exercises.md"
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/13-code-reading-exercises.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/08_integrated_mini_researcher.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/08_integrated_mini_researcher.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/06_subgraphs_and_concurrency.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/06_subgraphs_and_concurrency.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/02_state_and_command.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/02_state_and_command.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/04_tool_loop.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/04_tool_loop.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/05_search_and_mcp.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/05_search_and_mcp.py"
+        },
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/07_persistence_streaming_observability.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/07_persistence_streaming_observability.py"
+        }
+      ]
+    },
+    "14-current-api-migration": {
+      "collection": "langgraph-langchain",
+      "title": "第 14 章：旧版与当前版 API 对照",
+      "description": "学习目标",
+      "section": "LangGraph",
+      "order": 14,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/14-current-api-migration.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/09_runtime_context.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/09_runtime_context.py"
+        }
+      ]
+    },
+    "15-multi-agent-data-handoff": {
+      "collection": "langgraph-langchain",
+      "title": "第 15 章：主 Agent、子 Agent 与结构化数据交接",
+      "description": "学习目标",
+      "section": "LangGraph",
+      "order": 15,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-learning/15-multi-agent-data-handoff.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langgraph-learning/examples/10_multi_agent_handoff.py",
+          "url": "/knowledge-notes/examples/langgraph-langchain/examples/10_multi_agent_handoff.py"
+        }
+      ]
+    },
+    "langchain-v1-01-create-agent": {
+      "collection": "langchain-v1",
+      "title": "第 1 章：构造 `create_agent`",
+      "description": "目标",
+      "section": "LangChain v1",
+      "order": 1,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/01-create-agent.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/03_create_agent.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/03_create_agent.py"
+        }
+      ]
+    },
+    "langchain-v1-01-prompt-and-messages": {
+      "collection": "langchain-v1",
+      "title": "第 1 章：Prompt 与消息模板",
+      "description": "学习目标",
+      "section": "LangChain v1",
+      "order": 2,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/01-prompt-and-messages.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/01_prompt_templates.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/01_prompt_templates.py"
+        }
+      ]
+    },
+    "langchain-v1-02-lcel-and-runnables": {
+      "collection": "langchain-v1",
+      "title": "第 2 章：LCEL 与 Runnable",
+      "description": "学习目标",
+      "section": "LangChain v1",
+      "order": 3,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/02-lcel-and-runnables.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/02_lcel_runnables.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/02_lcel_runnables.py"
+        }
+      ]
+    },
+    "langchain-v1-02-messages-tools-structured-output": {
+      "collection": "langchain-v1",
+      "title": "第 2 章：消息、Prompt、工具与结构化输出",
+      "description": "消息协议",
+      "section": "LangChain v1",
+      "order": 4,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/02-messages-tools-structured-output.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/04_message_protocol.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/04_message_protocol.py"
+        }
+      ]
+    },
+    "langchain-v1-03-create-agent-and-middleware": {
+      "collection": "langchain-v1",
+      "title": "第 3 章：标准 Agent 与 Middleware",
+      "description": "学习目标",
+      "section": "LangChain v1",
+      "order": 5,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/03-create-agent-and-middleware.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/03_create_agent.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/03_create_agent.py"
+        }
+      ]
+    },
+    "langchain-v1-03-short-term-memory": {
+      "collection": "langchain-v1",
+      "title": "第 3 章：短期记忆",
+      "description": "短期记忆是同一对话 thread 的 Agent state 持久化，不是模型自己的记忆。给 createagent 传 checkpointer=InMemorySaver()，每次调用传相同 config={\"configurable\": {\"threadid\": \"...\"}}，第二轮就会恢复第一轮写入的 mes",
+      "section": "LangChain v1",
+      "order": 6,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/03-short-term-memory.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/07_short_term_memory.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/07_short_term_memory.py"
+        }
+      ]
+    },
+    "langchain-v1-04-documents-and-retrieval": {
+      "collection": "langchain-v1",
+      "title": "第 4 章：文档、切分、Embedding 与 Retriever",
+      "description": "学习目标",
+      "section": "LangChain v1",
+      "order": 7,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/04-documents-and-retrieval.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/04_documents_and_retrieval.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/04_documents_and_retrieval.py"
+        }
+      ]
+    },
+    "langchain-v1-04-long-term-memory": {
+      "collection": "langchain-v1",
+      "title": "第 4 章：长期记忆与 Store",
+      "description": "长期记忆是跨 thread 的受控数据。Store 挂在编译 Agent 上，工具通过 ToolRuntime.store 读取；namespace 必须包含已认证用户 id，避免 A 用户读到 B 用户的偏好。",
+      "section": "LangChain v1",
+      "order": 8,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/04-long-term-memory.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/08_long_term_memory.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/08_long_term_memory.py"
+        }
+      ]
+    },
+    "langchain-v1-05-rag-agent": {
+      "collection": "langchain-v1",
+      "title": "第 5 章：RAG 检索 Agent",
+      "description": "学习目标",
+      "section": "LangChain v1",
+      "order": 9,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/05-rag-agent.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/05_rag_agent.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/05_rag_agent.py"
+        }
+      ]
+    },
+    "langchain-v1-05-streaming-observability": {
+      "collection": "langchain-v1",
+      "title": "第 5 章：流式输出与观测",
+      "description": "ainvoke 适合只要最终 state；astream 适合 UI 或实时日志；astreamevents(version=\"v2\") 适合查看 Runnable/Agent 的嵌套生命周期。三者都执行真实工作，不要为了“流式”重复调用 Agent。",
+      "section": "LangChain v1",
+      "order": 10,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/05-streaming-observability.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/09_streaming_observability.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/09_streaming_observability.py"
+        }
+      ]
+    },
+    "langchain-v1-06-prebuilt-middleware": {
+      "collection": "langchain-v1",
+      "title": "第 6 章：预制 Middleware",
+      "description": "Middleware 在模型或工具节点前后执行，解决横切问题，不承担业务状态机。按顺序传入 middleware=[...]；顺序会影响谁先观察和修改请求。",
+      "section": "LangChain v1",
+      "order": 11,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/06-prebuilt-middleware.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/10_prebuilt_middleware.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/10_prebuilt_middleware.py"
+        }
+      ]
+    },
+    "langchain-v1-06-runnable-observability": {
+      "collection": "langchain-v1",
+      "title": "第 6 章：Runnable 观测与生产边界",
+      "description": "学习目标",
+      "section": "LangChain v1",
+      "order": 12,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/06-runnable-observability.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/06_runnable_observability.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/06_runnable_observability.py"
+        }
+      ]
+    },
+    "langchain-v1-07-custom-middleware": {
+      "collection": "langchain-v1",
+      "title": "第 7 章：自定义 `AgentMiddleware`",
+      "description": "只在预制 middleware 无法表达需求时自定义。常用钩子：beforeagent/afteragent 观察整次运行，beforemodel/aftermodel 修改或检查 state，wrapmodelcall 动态选择模型，wraptoolcall 拦截单次工具。",
+      "section": "LangChain v1",
+      "order": 13,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/07-custom-middleware.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/11_custom_middleware.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/11_custom_middleware.py"
+        }
+      ]
+    },
+    "langchain-v1-08-hitl": {
+      "collection": "langchain-v1",
+      "title": "第 8 章：人在回路（HITL）",
+      "description": "对有外部副作用的工具使用 HumanInTheLoopMiddleware。它在模型提出匹配工具调用后生成 LangGraph interrupt；调用方展示 action，再以 Command(resume={\"decisions\": [...]}) 恢复。必须配 checkpointer，否则没有可恢复状态。",
+      "section": "LangChain v1",
+      "order": 14,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/08-hitl.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/12_hitl.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/12_hitl.py"
+        }
+      ]
+    },
+    "langchain-v1-09-context-engineering": {
+      "collection": "langchain-v1",
+      "title": "第 9 章：Context engineering",
+      "description": "Context engineering 是把有限、可信、任务相关的信息在正确时机交给模型，不是把所有数据拼进 system prompt。一个可审查顺序是：稳定规则  最近消息  已验证工具结果  当前任务所需的最小长期记忆  模型调用。",
+      "section": "LangChain v1",
+      "order": 15,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/09-context-engineering.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/13_context_boundaries.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/13_context_boundaries.py"
+        }
+      ]
+    },
+    "langchain-v1-10-subagents-handoffs": {
+      "collection": "langchain-v1",
+      "title": "第 10 章：子 Agent 与结构化交接",
+      "description": "子 Agent 的目的不是把任何函数都拆成 Agent，而是隔离专业工具、上下文和失败边界。父 Agent 只传任务契约，子 Agent 只返结果契约，禁止把完整父对话、认证信息或所有 Store 内容直接转发。",
+      "section": "LangChain v1",
+      "order": 16,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/10-subagents-handoffs.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/15_structured_handoff.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/15_structured_handoff.py"
+        }
+      ]
+    },
+    "langchain-v1-11-integrated-agent": {
+      "collection": "langchain-v1",
+      "title": "第 11 章：综合 Agent",
+      "description": "[16integratedagent.py](examples/16integratedagent.py) 组合标准 Agent 的必要部件：",
+      "section": "LangChain v1",
+      "order": 17,
+      "published": true,
+      "source": "https://github.com/ljxpython/open_deep_research/blob/main/docs/langchain/11-integrated-agent.md",
+      "resources": [
+        {
+          "label": "查看示例代码：docs/langchain/examples/16_integrated_agent.py",
+          "url": "/knowledge-notes/examples/langchain-v1/examples/16_integrated_agent.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-skills": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Skills 学习路线",
+      "description": "学习主题",
+      "section": "Skills",
+      "order": 1,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/skills.md",
+      "resources": []
+    },
+    "deep-agents-skills-teach-01-skill-structure": {
+      "collection": "deep-agents",
+      "title": "01 把 skills 接进 DeepAgent",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 2,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/01_skill_structure.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/01_skill_structure.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/01_skill_structure.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-02-progressive-disclosure": {
+      "collection": "deep-agents",
+      "title": "02 Skill 激活与渐进披露",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 3,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/02_progressive_disclosure.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/02_progressive_disclosure.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/02_progressive_disclosure.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-03-supporting-resources": {
+      "collection": "deep-agents",
+      "title": "03 使用支持资源目录",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 4,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/03_supporting_resources.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/03_supporting_resources.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/03_supporting_resources.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-04-backend-loading": {
+      "collection": "deep-agents",
+      "title": "04 不同后端下使用 skills",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 5,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/04_backend_loading.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/04_backend_loading.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/04_backend_loading.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-05-permissions-subagents-troubleshooting": {
+      "collection": "deep-agents",
+      "title": "05 权限、子 Agent 与排错",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 6,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/05_permissions_subagents_troubleshooting.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/05_permissions_subagents_troubleshooting.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/05_permissions_subagents_troubleshooting.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-06-comprehensive-case": {
+      "collection": "deep-agents",
+      "title": "06 综合案例：把 skills 串起来",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 7,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/06_comprehensive_case.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/06_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/06_comprehensive_case.py"
+        }
+      ]
+    },
+    "deep-agents-skills-teach-07-multi-source-skills": {
+      "collection": "deep-agents",
+      "title": "07 多目录加载多个 Skills",
+      "description": "学习目标",
+      "section": "Skills",
+      "order": 8,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/skills_teach/docs/07_multi_source_skills.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/skills_teach/07_multi_source_skills.py",
+          "url": "/knowledge-notes/examples/deep-agents/skills_teach/07_multi_source_skills.py"
+        }
+      ]
+    },
+    "deep-agents-memory-teach-memory": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Memory 学习路线",
+      "description": "学习主题",
+      "section": "Memory / 记忆",
+      "order": 9,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/memory.md",
+      "resources": []
+    },
+    "deep-agents-memory-teach-01-memory-loading": {
+      "collection": "deep-agents",
+      "title": "01 Memory 启动加载",
+      "description": "学习目标",
+      "section": "Memory / 记忆",
+      "order": 10,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/01_memory_loading.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/01_memory_loading.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/01_memory_loading.py"
+        }
+      ]
+    },
+    "deep-agents-memory-teach-02-scoped-memory": {
+      "collection": "deep-agents",
+      "title": "02 Agent scope 与 User scope",
+      "description": "学习目标",
+      "section": "Memory / 记忆",
+      "order": 11,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/02_scoped_memory.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/02_scoped_memory.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/02_scoped_memory.py"
+        }
+      ]
+    },
+    "deep-agents-memory-teach-03-memory-permissions": {
+      "collection": "deep-agents",
+      "title": "03 只读与可写 Memory",
+      "description": "学习目标",
+      "section": "Memory / 记忆",
+      "order": 12,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/03_memory_permissions.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/03_memory_permissions.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/03_memory_permissions.py"
+        }
+      ]
+    },
+    "deep-agents-memory-teach-04-background-consolidation": {
+      "collection": "deep-agents",
+      "title": "04 后台整理 Memory",
+      "description": "学习目标",
+      "section": "Memory / 记忆",
+      "order": 13,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/04_background_consolidation.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/04_background_consolidation.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/04_background_consolidation.py"
+        }
+      ]
+    },
+    "deep-agents-memory-teach-05-comprehensive-case": {
+      "collection": "deep-agents",
+      "title": "05 综合案例：真实 Agent 读取 Memory",
+      "description": "学习目标",
+      "section": "Memory / 记忆",
+      "order": 14,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/05_comprehensive_case.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/05_comprehensive_case.py"
+        },
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/05_comprehensive_case.py"
+        },
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/05_comprehensive_case.py"
+        }
+      ]
+    },
+    "deep-agents-memory-teach-06-production-user-memory-design": {
+      "collection": "deep-agents",
+      "title": "06 生产化：动态用户 Memory 设计",
+      "description": "学习目标",
+      "section": "Memory / 记忆",
+      "order": 15,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/memory_teach/docs/06_production_user_memory_design.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/06_production_user_memory_design.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/06_production_user_memory_design.py"
+        }
+      ]
+    },
+    "deep-agents-context-engineering-teach-context-engineering": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Context Engineering 学习路线",
+      "description": "学习主题",
+      "section": "Context Engineering",
+      "order": 16,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/context_engineering.md",
+      "resources": []
+    },
+    "deep-agents-context-engineering-teach-01-input-context": {
+      "collection": "deep-agents",
+      "title": "01 Input context：启动时上下文",
+      "description": "它是什么",
+      "section": "Context Engineering",
+      "order": 17,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/01_input_context.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/context_engineering_teach/01_input_context.py",
+          "url": "/knowledge-notes/examples/deep-agents/context_engineering_teach/01_input_context.py"
+        }
+      ]
+    },
+    "deep-agents-context-engineering-teach-02-runtime-context": {
+      "collection": "deep-agents",
+      "title": "02 Runtime context：每次调用的静态配置",
+      "description": "它是什么",
+      "section": "Context Engineering",
+      "order": 18,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/02_runtime_context.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/context_engineering_teach/02_runtime_context.py",
+          "url": "/knowledge-notes/examples/deep-agents/context_engineering_teach/02_runtime_context.py"
+        }
+      ]
+    },
+    "deep-agents-context-engineering-teach-03-custom-state-schema": {
+      "collection": "deep-agents",
+      "title": "03 Custom state schema：可变图状态",
+      "description": "它是什么",
+      "section": "Context Engineering",
+      "order": 19,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/03_custom_state_schema.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/context_engineering_teach/03_custom_state_schema.py",
+          "url": "/knowledge-notes/examples/deep-agents/context_engineering_teach/03_custom_state_schema.py"
+        }
+      ]
+    },
+    "deep-agents-context-engineering-teach-04-context-compression": {
+      "collection": "deep-agents",
+      "title": "04 Context compression：自动压缩与手动 compact",
+      "description": "它是什么",
+      "section": "Context Engineering",
+      "order": 20,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/04_context_compression.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/context_engineering_teach/04_context_compression.py",
+          "url": "/knowledge-notes/examples/deep-agents/context_engineering_teach/04_context_compression.py"
+        }
+      ]
+    },
+    "deep-agents-context-engineering-teach-05-context-isolation-subagents": {
+      "collection": "deep-agents",
+      "title": "05 Subagents：上下文隔离",
+      "description": "它是什么",
+      "section": "Context Engineering",
+      "order": 21,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/05_context_isolation_subagents.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/context_engineering_teach/05_context_isolation_subagents.py",
+          "url": "/knowledge-notes/examples/deep-agents/context_engineering_teach/05_context_isolation_subagents.py"
+        }
+      ]
+    },
+    "deep-agents-context-engineering-teach-06-long-term-memory-case": {
+      "collection": "deep-agents",
+      "title": "06 综合案例：长期记忆",
+      "description": "它是什么",
+      "section": "Context Engineering",
+      "order": 22,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/context_engineering_teach/docs/06_long_term_memory_case.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/context_engineering_teach/06_long_term_memory_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/context_engineering_teach/06_long_term_memory_case.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-backends": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Backends 学习笔记",
+      "description": "1. Backend 是什么",
+      "section": "Backends / 后端",
+      "order": 23,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/backends.md",
+      "resources": []
+    },
+    "deep-agents-backend-teach-01-state-backend": {
+      "collection": "deep-agents",
+      "title": "01 StateBackend",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 24,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/01_state_backend.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/01_state_backend.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/01_state_backend.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-02-filesystem-backend": {
+      "collection": "deep-agents",
+      "title": "02 FilesystemBackend",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 25,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/02_filesystem_backend.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/02_filesystem_backend.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/02_filesystem_backend.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-03-composite-backend": {
+      "collection": "deep-agents",
+      "title": "03 CompositeBackend",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 26,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/03_composite_backend.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/03_composite_backend.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/03_composite_backend.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-04-store-backend": {
+      "collection": "deep-agents",
+      "title": "04 StoreBackend",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 27,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/04_store_backend.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/04_store_backend.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/04_store_backend.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-05-composite-store-filesystem": {
+      "collection": "deep-agents",
+      "title": "05 State + Store + Filesystem",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 28,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/05_composite_store_filesystem.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/05_composite_store_filesystem.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/05_composite_store_filesystem.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-06-permissions": {
+      "collection": "deep-agents",
+      "title": "06 Permissions",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 29,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/06_permissions.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/06_permissions.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/06_permissions.py"
+        }
+      ]
+    },
+    "deep-agents-backend-teach-07-local-shell-backend": {
+      "collection": "deep-agents",
+      "title": "07 LocalShellBackend",
+      "description": "学习目标",
+      "section": "Backends / 后端",
+      "order": 30,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/backend_teach/docs/07_local_shell_backend.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/backend_teach/07_local_shell_backend.py",
+          "url": "/knowledge-notes/examples/deep-agents/backend_teach/07_local_shell_backend.py"
+        }
+      ]
+    },
+    "deep-agents-subagents-teach-00-coverage-and-usage": {
+      "collection": "deep-agents",
+      "title": "00 覆盖清单与常用程度",
+      "description": "这套教程覆盖了吗",
+      "section": "Subagents / 子 Agent",
+      "order": 31,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/00_coverage_and_usage.md",
+      "resources": []
+    },
+    "deep-agents-subagents-teach-subagents": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Subagents 学习路线",
+      "description": "学习主题",
+      "section": "Subagents / 子 Agent",
+      "order": 32,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/subagents.md",
+      "resources": []
+    },
+    "deep-agents-subagents-teach-01-default-general-purpose": {
+      "collection": "deep-agents",
+      "title": "01 默认 general-purpose subagent",
+      "description": "它是什么",
+      "section": "Subagents / 子 Agent",
+      "order": 33,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/01_default_general_purpose.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/subagents_teach/01_default_general_purpose.py",
+          "url": "/knowledge-notes/examples/deep-agents/subagents_teach/01_default_general_purpose.py"
+        }
+      ]
+    },
+    "deep-agents-subagents-teach-02-custom-subagent": {
+      "collection": "deep-agents",
+      "title": "02 自定义字典 subagent",
+      "description": "它是什么",
+      "section": "Subagents / 子 Agent",
+      "order": 34,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/02_custom_subagent.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/subagents_teach/02_custom_subagent.py",
+          "url": "/knowledge-notes/examples/deep-agents/subagents_teach/02_custom_subagent.py"
+        }
+      ]
+    },
+    "deep-agents-subagents-teach-03-context-propagation": {
+      "collection": "deep-agents",
+      "title": "03 runtime context 传播",
+      "description": "它是什么",
+      "section": "Subagents / 子 Agent",
+      "order": 35,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/03_context_propagation.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/subagents_teach/03_context_propagation.py",
+          "url": "/knowledge-notes/examples/deep-agents/subagents_teach/03_context_propagation.py"
+        }
+      ]
+    },
+    "deep-agents-subagents-teach-04-structured-output": {
+      "collection": "deep-agents",
+      "title": "04 structured output",
+      "description": "它是什么",
+      "section": "Subagents / 子 Agent",
+      "order": 36,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/04_structured_output.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/subagents_teach/04_structured_output.py",
+          "url": "/knowledge-notes/examples/deep-agents/subagents_teach/04_structured_output.py"
+        }
+      ]
+    },
+    "deep-agents-subagents-teach-05-disable-subagents": {
+      "collection": "deep-agents",
+      "title": "05 关闭同步 subagents",
+      "description": "它是什么",
+      "section": "Subagents / 子 Agent",
+      "order": 37,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/05_disable_subagents.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/subagents_teach/05_disable_subagents.py",
+          "url": "/knowledge-notes/examples/deep-agents/subagents_teach/05_disable_subagents.py"
+        }
+      ]
+    },
+    "deep-agents-subagents-teach-06-async-subagents": {
+      "collection": "deep-agents",
+      "title": "06 async subagents",
+      "description": "它是什么",
+      "section": "Subagents / 子 Agent",
+      "order": 38,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/subagents_teach/docs/06_async_subagents.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/subagents_teach/06_async_subagents.py",
+          "url": "/knowledge-notes/examples/deep-agents/subagents_teach/06_async_subagents.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-00-coverage-and-usage": {
+      "collection": "deep-agents",
+      "title": "00 覆盖清单与常用程度",
+      "description": "覆盖表",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 39,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/00_coverage_and_usage.md",
+      "resources": []
+    },
+    "deep-agents-human-loop-teach-human-in-the-loop": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Human-in-the-loop 学习路线",
+      "description": "学习主题",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 40,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/human_in_the_loop.md",
+      "resources": []
+    },
+    "deep-agents-human-loop-teach-01-basic-approve": {
+      "collection": "deep-agents",
+      "title": "01 基础中断与 approve",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 41,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/01_basic_approve.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/01_basic_approve.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/01_basic_approve.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-02-decision-types": {
+      "collection": "deep-agents",
+      "title": "02 decision types",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 42,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/02_decision_types.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/02_decision_types.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/02_decision_types.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-03-conditional-interrupt": {
+      "collection": "deep-agents",
+      "title": "03 条件中断",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 43,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/03_conditional_interrupt.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/03_conditional_interrupt.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/03_conditional_interrupt.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-04-multiple-tool-calls": {
+      "collection": "deep-agents",
+      "title": "04 多工具批量审批",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 44,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/04_multiple_tool_calls.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/04_multiple_tool_calls.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/04_multiple_tool_calls.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-05-subagent-interrupt": {
+      "collection": "deep-agents",
+      "title": "05 subagent interrupts",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 45,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/05_subagent_interrupt.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/05_subagent_interrupt.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/05_subagent_interrupt.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-06-filesystem-permission-interrupt": {
+      "collection": "deep-agents",
+      "title": "06 filesystem permission interrupts",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 46,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/06_filesystem_permission_interrupt.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/06_filesystem_permission_interrupt.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/06_filesystem_permission_interrupt.py"
+        }
+      ]
+    },
+    "deep-agents-human-loop-teach-07-comprehensive-case": {
+      "collection": "deep-agents",
+      "title": "07 综合案例",
+      "description": "它是什么",
+      "section": "Human-in-the-loop / 人机回路",
+      "order": 47,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/human_loop_teach/docs/07_comprehensive_case.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/human_loop_teach/07_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/human_loop_teach/07_comprehensive_case.py"
+        }
+      ]
+    },
+    "deep-agents-frontend-teach-frontend-overview": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Frontend 学习路线",
+      "description": "学习主题",
+      "section": "Frontend / 前端",
+      "order": 48,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/frontend_overview.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-01-overview": {
+      "collection": "deep-agents",
+      "title": "01 概述：真实链路与 useStream 暴露了什么",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 49,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/01_overview.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-02-subagent-streaming": {
+      "collection": "deep-agents",
+      "title": "02 Subagent streaming：把专家子代理单独展示",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 50,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/02_subagent_streaming.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-03-todo-list": {
+      "collection": "deep-agents",
+      "title": "03 Todo list",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 51,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/03_todo_list.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-04-sandbox": {
+      "collection": "deep-agents",
+      "title": "04 Sandbox",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 52,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/04_sandbox.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-05-frontend-hitl": {
+      "collection": "deep-agents",
+      "title": "05 Frontend HITL",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 53,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/05_frontend_hitl.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-06-dynamic-tools": {
+      "collection": "deep-agents",
+      "title": "06 Dynamic Tools",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 54,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/06_dynamic_tools.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-07-mcp-skills-selection": {
+      "collection": "deep-agents",
+      "title": "07 MCP + Skills 严格选择",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 55,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/07_mcp_skills_selection.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-08-langgraph-graph-execution": {
+      "collection": "deep-agents",
+      "title": "08 LangGraph Graph Execution",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 56,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/08_langgraph_graph_execution.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-09-custom-stream-channels": {
+      "collection": "deep-agents",
+      "title": "09 Custom Stream Channels",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 57,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/09_custom_stream_channels.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-10-markdown-messages": {
+      "collection": "deep-agents",
+      "title": "10 Markdown Messages",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 58,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/10_markdown_messages.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-11-tool-calling": {
+      "collection": "deep-agents",
+      "title": "11 Tool Calling",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 59,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/11_tool_calling.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-12-headless-tools": {
+      "collection": "deep-agents",
+      "title": "12 Headless Tools",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 60,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/12_headless_tools.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-13-human-in-the-loop": {
+      "collection": "deep-agents",
+      "title": "13 Human-in-the-loop",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 61,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/13_human_in_the_loop.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-14-branching-chat": {
+      "collection": "deep-agents",
+      "title": "14 Branching Chat",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 62,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/14_branching_chat.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-15-reasoning-tokens": {
+      "collection": "deep-agents",
+      "title": "15 Reasoning Tokens",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 63,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/15_reasoning_tokens.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-16-structured-output": {
+      "collection": "deep-agents",
+      "title": "16 Structured Output",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 64,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/16_structured_output.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-17-message-queues": {
+      "collection": "deep-agents",
+      "title": "17 Message Queues",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 65,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/17_message_queues.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-18-join-rejoin": {
+      "collection": "deep-agents",
+      "title": "18 Join & Rejoin Streams",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 66,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/18_join_rejoin.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-19-time-travel": {
+      "collection": "deep-agents",
+      "title": "19 Time Travel",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 67,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/19_time_travel.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-20-generative-ui": {
+      "collection": "deep-agents",
+      "title": "20 Generative UI",
+      "description": "它是什么",
+      "section": "Frontend / 前端",
+      "order": 68,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/20_generative_ui.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-21-frontend-integrations": {
+      "collection": "deep-agents",
+      "title": "21 Frontend Integrations Overview",
+      "description": "本章目标",
+      "section": "Frontend / 前端",
+      "order": 69,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/21_frontend_integrations.md",
+      "resources": []
+    },
+    "deep-agents-frontend-teach-22-integration-examples": {
+      "collection": "deep-agents",
+      "title": "22 Frontend Integration Examples",
+      "description": "本章目标",
+      "section": "Frontend / 前端",
+      "order": 70,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/frontend_teach/docs/22_integration_examples.md",
+      "resources": []
+    },
+    "deep-agents-profiles-teach-profiles": {
+      "collection": "deep-agents",
+      "title": "Deep Agents Profiles 学习路线",
+      "description": "学习主题",
+      "section": "Profiles / 模型配置",
+      "order": 71,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/profiles_teach/docs/profiles.md",
+      "resources": []
+    },
+    "deep-agents-profiles-teach-01-harness-prompt-suffix": {
+      "collection": "deep-agents",
+      "title": "01 HarnessProfile：追加模型专属提示",
+      "description": "它是什么",
+      "section": "Profiles / 模型配置",
+      "order": 72,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/profiles_teach/docs/01_harness_prompt_suffix.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/01_harness_prompt_suffix.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/01_harness_prompt_suffix.py"
+        }
+      ]
+    },
+    "deep-agents-profiles-teach-02-tool-visibility": {
+      "collection": "deep-agents",
+      "title": "02 工具可见性与描述覆盖",
+      "description": "它是什么",
+      "section": "Profiles / 模型配置",
+      "order": 73,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/profiles_teach/docs/02_tool_visibility.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/02_tool_visibility.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/02_tool_visibility.py"
+        }
+      ]
+    },
+    "deep-agents-profiles-teach-03-provider-profile": {
+      "collection": "deep-agents",
+      "title": "03 ProviderProfile：模型构造参数",
+      "description": "它是什么",
+      "section": "Profiles / 模型配置",
+      "order": 74,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/profiles_teach/docs/03_provider_profile.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/03_provider_profile.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/03_provider_profile.py"
+        }
+      ]
+    },
+    "deep-agents-profiles-teach-04-config-profile": {
+      "collection": "deep-agents",
+      "title": "04 HarnessProfileConfig：配置文件加载",
+      "description": "它是什么",
+      "section": "Profiles / 模型配置",
+      "order": 75,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/profiles_teach/docs/04_config_profile.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/04_config_profile.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/04_config_profile.py"
+        }
+      ]
+    },
+    "deep-agents-profiles-teach-05-comprehensive-case": {
+      "collection": "deep-agents",
+      "title": "05 综合案例：Provider + Harness 一起用",
+      "description": "它是什么",
+      "section": "Profiles / 模型配置",
+      "order": 76,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/profiles_teach/docs/05_comprehensive_case.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/05_comprehensive_case.py"
+        },
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/05_comprehensive_case.py"
+        },
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/05_comprehensive_case.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-advanced": {
+      "collection": "deep-agents",
+      "title": "Deep Agents 高级能力教学",
+      "description": "这个目录继续学习 Deep Agents 里更靠近生产的能力。每章只做一个核心概念，代码放在 deepagentsrc/advancedteach/，讲义放在 deepagentsrc/advancedteach/docs/。",
+      "section": "Advanced / 高级能力",
+      "order": 77,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/advanced.md",
+      "resources": []
+    },
+    "deep-agents-advanced-teach-01-interpreters-ptc": {
+      "collection": "deep-agents",
+      "title": "01 Interpreter 与 PTC",
+      "description": "Interpreter 是 Deep Agents 的一个轻量代码执行层：模型不只发普通工具调用，还可以写一段 JavaScript 让运行时执行。PTC 是 Programmatic Tool Calling，它把允许的工具暴露到 Interpreter 的 tools 命名空间里，让代码循环、分支、并行调用工具。它",
+      "section": "Advanced / 高级能力",
+      "order": 78,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/01_interpreters_ptc.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/01_interpreters_ptc.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/01_interpreters_ptc.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-02-sandbox-lifecycle": {
+      "collection": "deep-agents",
+      "title": "02 Sandbox 生命周期",
+      "description": "Sandbox 是 Deep Agents 的执行环境后端：它让 Agent 不只读写文件，还能通过 execute 跑命令。生命周期问题解决的是“这个环境什么时候创建、什么时候复用、什么时候销毁”。生产里最常见的是 threadscoped：每个 conversation 一个 sandbox，同一个 threadi",
+      "section": "Advanced / 高级能力",
+      "order": 79,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/02_sandbox_lifecycle.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/02_sandbox_lifecycle.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/02_sandbox_lifecycle.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-03-event-streaming": {
+      "collection": "deep-agents",
+      "title": "第三章：Event Streaming",
+      "description": "Event Streaming 是把一次 Agent 运行拆成连续事件：模型消息、工具开始/结束、状态快照和最终输出都会按运行过程吐出来。它解决的是前端不能只等最终答案的问题，IDE、聊天窗口、工具执行面板都需要边跑边更新。Deep Agents 继承 LangGraph 的流式协议，并额外提供面向子代理的 subag",
+      "section": "Advanced / 高级能力",
+      "order": 80,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/03_event_streaming.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/03_event_streaming.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/03_event_streaming.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-04-fault-tolerance": {
+      "collection": "deep-agents",
+      "title": "第四章：Fault Tolerance",
+      "description": "Fault Tolerance 是让 Agent 在真实生产错误里继续可靠工作的能力。它不是把所有异常吞掉，而是按错误类型分流：临时网络错误自动重试，可由模型修正的工具错误转成 ToolMessage，需要人判断的操作交给 HITL，无法处理的未知异常直接暴露给开发者。",
+      "section": "Advanced / 高级能力",
+      "order": 81,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/04_fault_tolerance.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/04_fault_tolerance.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/04_fault_tolerance.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-05-going-to-production": {
+      "collection": "deep-agents",
+      "title": "第五章：Going to Production",
+      "description": "生产 Deep Agent 的核心不是“把本地 agent 变量直接部署出去”，而是让每个 run 带着稳定的 threadid 和本次请求的 context。当后端资源依赖 threadid，例如 threadscoped sandbox 时，导出的 Agent 应该是 async graph factory：平台每",
+      "section": "Advanced / 高级能力",
+      "order": 82,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/05_going_to_production.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/05_going_to_production.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/05_going_to_production.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-06-rubric-evaluation": {
+      "collection": "deep-agents",
+      "title": "第六章：Rubric 与 Evaluation",
+      "description": "Rubric 是把“做好”写成可判断标准，避免只凭感觉说 Agent 输出不错。RubricMiddleware 在一次 Deep Agent 运行内做 runtime LLMasajudge：工作 Agent 输出后，独立 grader 依据 rubric 给出 satisfied、needsrevision 或 f",
+      "section": "Advanced / 高级能力",
+      "order": 83,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/06_rubric_evaluation.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/06_rubric_evaluation.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/06_rubric_evaluation.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-07-multimodal": {
+      "collection": "deep-agents",
+      "title": "第七章：Multimodal",
+      "description": "Deep Agents 的内置 readfile 不只读文本。对受支持的图片、PDF、音视频文件，它会返回标准多模态 content blocks，让支持对应模态的模型直接检查文件内容，而不是把二进制转成乱码塞进 prompt。",
+      "section": "Advanced / 高级能力",
+      "order": 84,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/07_multimodal.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/07_multimodal.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/07_multimodal.py"
+        }
+      ]
+    },
+    "deep-agents-advanced-teach-08-model-capability-routing": {
+      "collection": "deep-agents",
+      "title": "第八章：模型能力注册表与运行时模型路由",
+      "description": "模型名称不是能力声明。前端可以提交 modelid，但服务端必须用受控注册表确认它确实允许使用，并且满足本轮任务的能力要求；不能把任意 provider/model 字符串直接透传给 initchatmodel。",
+      "section": "Advanced / 高级能力",
+      "order": 85,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/advanced_teach/docs/08_model_capability_routing.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/advanced_teach/08_model_capability_routing.py",
+          "url": "/knowledge-notes/examples/deep-agents/advanced_teach/08_model_capability_routing.py"
+        }
+      ]
+    },
+    "deep-agents-middleware-teach-middleware": {
+      "collection": "deep-agents",
+      "title": "Middleware 学习路线",
+      "description": "这组小章节专门补 Deep Agents / LangChain / LangGraph 里的 middleware。代码放在 deepagentsrc/middlewareteach/，讲义放在 deepagentsrc/middlewareteach/docs/。",
+      "section": "Middleware / 中间件",
+      "order": 86,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/middleware.md",
+      "resources": []
+    },
+    "deep-agents-middleware-teach-01-lifecycle-hooks": {
+      "collection": "deep-agents",
+      "title": "第一章：生命周期钩子 `before_model` / `after_model`",
+      "description": "这两个 hook 是最基础的 middleware 入口：beforemodel 在每次模型调用前执行，aftermodel 在模型返回后执行。它们适合做日志、限流标记、状态统计、轻量校验；不适合改写整个模型调用流程，那是 wrapmodelcall 的活。",
+      "section": "Middleware / 中间件",
+      "order": 87,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/01_lifecycle_hooks.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/01_lifecycle_hooks.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/01_lifecycle_hooks.py"
+        }
+      ]
+    },
+    "deep-agents-middleware-teach-02-wrap-model-call": {
+      "collection": "deep-agents",
+      "title": "第二章：`wrap_model_call`",
+      "description": "wrapmodelcall 是包住模型调用的 middleware：你可以选择调用 handler(request)，也可以不调用它直接返回。它解决的是模型层控制问题，比如改模型请求、统计调用、fallback、缓存命中、短路返回。",
+      "section": "Middleware / 中间件",
+      "order": 88,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/02_wrap_model_call.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/02_wrap_model_call.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/02_wrap_model_call.py"
+        }
+      ]
+    },
+    "deep-agents-middleware-teach-03-wrap-tool-call": {
+      "collection": "deep-agents",
+      "title": "第三章：`wrap_tool_call`",
+      "description": "wraptoolcall 是包住工具执行的 middleware：它拿到模型发出的 tool call，调用 handler(request) 后工具才会真正执行。它解决的是工具层控制问题，例如审计、重试、错误转译、结果改写和敏感信息过滤。",
+      "section": "Middleware / 中间件",
+      "order": 89,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/03_wrap_tool_call.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/03_wrap_tool_call.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/03_wrap_tool_call.py"
+        }
+      ]
+    },
+    "deep-agents-middleware-teach-04-deepagents-default-stack": {
+      "collection": "deep-agents",
+      "title": "第四章：Deep Agents 默认 middleware 栈",
+      "description": "Deep Agents 不是另起炉灶的 Agent runtime，它是把 LangChain agent loop 和一组默认 middleware 打包成 harness。createdeepagent(..., middleware=[...]) 里的自定义 middleware 会插入 Deep Agents ",
+      "section": "Middleware / 中间件",
+      "order": 90,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/04_deepagents_default_stack.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/04_deepagents_default_stack.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/04_deepagents_default_stack.py"
+        }
+      ]
+    },
+    "deep-agents-middleware-teach-05-comprehensive-case": {
+      "collection": "deep-agents",
+      "title": "第五章：综合案例",
+      "description": "本章把 wrapmodelcall、wraptoolcall 和 createdeepagent 放到同一条真实流程里。wrapmodelcall 观察模型层调用，并对临时上游错误做最小重试；wraptoolcall 观察并改写工具结果；Deep Agent 负责真实调用模型并决定工具调用。",
+      "section": "Middleware / 中间件",
+      "order": 91,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/05_comprehensive_case.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/memory_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/memory_teach/05_comprehensive_case.py"
+        },
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/05_comprehensive_case.py"
+        },
+        {
+          "label": "查看示例代码：deepagent_src/profiles_teach/05_comprehensive_case.py",
+          "url": "/knowledge-notes/examples/deep-agents/profiles_teach/05_comprehensive_case.py"
+        }
+      ]
+    },
+    "deep-agents-middleware-teach-06-class-state-schema": {
+      "collection": "deep-agents",
+      "title": "06 类中间件与 `state_schema`",
+      "description": "AgentMiddleware 类写法适合把多个 hook 和它们共享的配置放在一起。stateschema 用来扩展 agent state，让 middleware 能把计数、标记、审计结果这类运行时信息写回最终 state。它不是全局变量，也不是系统提示词，作用域是这次 agent run 的状态。",
+      "section": "Middleware / 中间件",
+      "order": 92,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/middleware_teach/docs/06_class_state_schema.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/middleware_teach/06_class_state_schema.py",
+          "url": "/knowledge-notes/examples/deep-agents/middleware_teach/06_class_state_schema.py"
+        }
+      ]
+    },
+    "deep-agents-a2a-teach-a2a": {
+      "collection": "deep-agents",
+      "title": "A2A 教学",
+      "description": "这个目录学习如何把 Deep Agent 暴露成标准 A2A Server，以及如何作为 Client 调用远端 Agent。",
+      "section": "A2A / 远程 Agent",
+      "order": 93,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/a2a_teach/docs/a2a.md",
+      "resources": []
+    },
+    "deep-agents-a2a-teach-01-deep-agent-server": {
+      "collection": "deep-agents",
+      "title": "第一章：通过 A2A 暴露 Deep Agent",
+      "description": "A2A 是 AgenttoAgent 协议：调用方先读取远端的 Agent Card，了解它的接口和 Skill 元数据，再发送任务并接收 Message 或 Task。它不是 Deep Agent 的 task 工具，也不是 MCP；本例把一个真实 Deep Agent 包在 A2A Server 中，让另一个 A2",
+      "section": "A2A / 远程 Agent",
+      "order": 94,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/a2a_teach/docs/01_deep_agent_server.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/a2a_teach/01_deep_agent_server.py",
+          "url": "/knowledge-notes/examples/deep-agents/a2a_teach/01_deep_agent_server.py"
+        }
+      ]
+    },
+    "deep-agents-a2a-teach-02-streaming-and-cancel": {
+      "collection": "deep-agents",
+      "title": "第二章：A2A 流式状态、超时和取消",
+      "description": "代码在 deepagentsrc/a2ateach/02streamingandcancel.py。",
+      "section": "A2A / 远程 Agent",
+      "order": 95,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/a2a_teach/docs/02_streaming_and_cancel.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/a2a_teach/02_streaming_and_cancel.py",
+          "url": "/knowledge-notes/examples/deep-agents/a2a_teach/02_streaming_and_cancel.py"
+        }
+      ]
+    },
+    "deep-agents-a2a-teach-03-auth-and-remote-capabilities": {
+      "collection": "deep-agents",
+      "title": "第三章：认证与远端能力授权",
+      "description": "代码在 deepagentsrc/a2ateach/03authandremotecapabilities.py。",
+      "section": "A2A / 远程 Agent",
+      "order": 96,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/a2a_teach/docs/03_auth_and_remote_capabilities.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/a2a_teach/03_auth_and_remote_capabilities.py",
+          "url": "/knowledge-notes/examples/deep-agents/a2a_teach/03_auth_and_remote_capabilities.py"
+        }
+      ]
+    },
+    "deep-agents-a2a-teach-04-multi-agent-orchestration": {
+      "collection": "deep-agents",
+      "title": "第四章：多个远端 A2A Agent 编排",
+      "description": "代码在 deepagentsrc/a2ateach/04multiagentorchestration.py。",
+      "section": "A2A / 远程 Agent",
+      "order": 97,
+      "published": true,
+      "source": "https://github.com/ljxpython/langgraph_teach/blob/main/deepagent_src/a2a_teach/docs/04_multi_agent_orchestration.md",
+      "resources": [
+        {
+          "label": "查看示例代码：deepagent_src/a2a_teach/04_multi_agent_orchestration.py",
+          "url": "/knowledge-notes/examples/deep-agents/a2a_teach/04_multi_agent_orchestration.py"
+        }
+      ]
     }
   }
 }

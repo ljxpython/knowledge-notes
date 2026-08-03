@@ -24,7 +24,7 @@
 
 ## 最小真实 Agent
 
-示例文件：[04_tool_loop.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/04_tool_loop.py)。
+示例文件：[04_tool_loop.py](/knowledge-notes/examples/langgraph-langchain/examples/04_tool_loop.py)。
 
 示例只保留一个工具：
 
@@ -45,7 +45,7 @@ def multiply_by_two(value: int) -> str:
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/04_tool_loop.py
+uv run python docs/langgraph-learning/examples/04_tool_loop.py
 ```
 
 预期现象：

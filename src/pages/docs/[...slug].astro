@@ -7,7 +7,8 @@ export async function getStaticPaths() {
     .sort((a, b) => a.data.collectionOrder - b.data.collectionOrder || a.data.order - b.data.order);
 
   return docs.map((doc) => {
-    const collectionDocs = docs.filter((item) => item.data.collection === doc.data.collection);
+    const collectionDocs = docs.filter((item) => item.data.collection === doc.data.collection
+      && (doc.data.collection !== 'deep-agents' || item.data.section === doc.data.section));
     const index = collectionDocs.findIndex((item) => item.id === doc.id);
 
     return {

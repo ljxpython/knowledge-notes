@@ -15,36 +15,43 @@ class Configuration(BaseModel):
     mcp_config: MCPConfig | None = None
 ```
 
-每个节点都用同一入口解析它：
+当前节点从 `Runtime.context` 读取已经校验好的配置：
 
 ```python
-configurable = Configuration.from_runnable_config(config)
+async def researcher(state: ResearcherState, runtime: Runtime[Configuration]):
+    settings = runtime.context
 ```
 
-解析优先级是：
-
-```text
-环境变量 FIELD_NAME.upper()
-  > RunnableConfig["configurable"][field_name]
-  > Pydantic 字段默认值
-```
-
-例如 `RESEARCH_MODEL` 存在时会覆盖 `configurable.research_model`。这是部署时方便、测试时容易踩坑的规则：测试想精确控制模型和搜索提供商时，先检查 shell 环境没有遗留同名变量。
-
-## 2. `RunnableConfig` 不是模型可见的 state
-
-项目把 `RunnableConfig` 传给每个图节点：
+新调用方在构图和运行时显式声明 context：
 
 ```python
-async def researcher(state: ResearcherState, config: RunnableConfig):
-    configurable = Configuration.from_runnable_config(config)
+graph = StateGraph(AgentState, context_schema=Configuration).compile()
+result = await graph.ainvoke(
+    graph_input,
+    context=Configuration.from_env(),
+)
 ```
 
-它适合装载：
+`Configuration.from_env()` 读取环境变量，未提供的字段继续使用 Pydantic 默认值。单次调用需要覆盖时，直接构造、校验或复制 `Configuration`，不要把业务字段塞进 `RunnableConfig`。`user_id`、`supabase_access_token` 和 `api_keys` 是请求级敏感字段，必须由受信任调用入口显式放入 context，不从进程环境自动加载。
 
-- `configurable`：本次运行的模型、限额、`thread_id`、MCP 参数。
-- `metadata`：运行归属信息，例如 `owner`。
-- tags、callbacks、checkpointer 等 LangChain/LangGraph 运行时能力。
+## 2. `Runtime.context` 与 `RunnableConfig` 的边界
+
+项目把业务配置放在 `Runtime.context`，把运行控制放在 `RunnableConfig`：
+
+```python
+async def researcher(
+    state: ResearcherState,
+    runtime: Runtime[Configuration],
+):
+    settings = runtime.context
+```
+
+`RunnableConfig` 适合装载：
+
+- `configurable.thread_id` 等 checkpointer 运行参数。
+- tags、callbacks、metadata、recursion limit 等 LangChain/LangGraph 运行时能力。
+
+当前主实现不从 `RunnableConfig` 读取模型、搜索、MCP 或密钥字段；它们都属于 `Configuration`。
 
 它不适合装载：
 
@@ -61,9 +68,9 @@ async def researcher(state: ResearcherState, config: RunnableConfig):
 | `GET_API_KEYS_FROM_CONFIG` | OpenAI/Tavily 密钥来源 | 典型场景 |
 | --- | --- | --- |
 | 缺省或 `false` | 进程环境变量，如 `OPENAI_API_KEY` | 本地开发、受控服务端 |
-| `true` | `config["configurable"]["apiKeys"]` | 平台代传、短生命周期密钥 |
+| `true` | `Runtime.context.api_keys` | 受信任入口代传的短生命周期密钥 |
 
-这个开关只决定“代码从哪里读”，不自动提供加密、审计或脱敏。不要把 `apiKeys` 写入 graph state、日志、LangSmith metadata 或聊天消息。
+这个开关只决定“代码从哪里读”，不自动提供加密、审计或脱敏。不要把 `api_keys` 写入 graph state、日志、LangSmith metadata 或聊天消息。
 
 第 [1 章](/knowledge-notes/docs/langgraph-langchain/01-real-model-agent/) 使用项目的模型配置完成真实模型调用；第 [5 章](/knowledge-notes/docs/langgraph-langchain/05-search-and-mcp/) 则验证了在 `search_api="none"` 时仍可安全装配本地工具。
 
@@ -103,7 +110,7 @@ class MCPConfig(BaseModel):
   -> 包装认证异常
 ```
 
-`auth_required=True` 时，项目以 `x-supabase-access-token` 换取 MCP token；token 存在 LangGraph Store 的 `(owner, "tokens")` 命名空间中，并根据 `expires_in` 过期删除。远端工具名必须进入 `mcp_config.tools`，不能因为服务器“提供了”就全部暴露给模型。
+`auth_required=True` 时，项目以 `runtime.context.supabase_access_token` 换取 MCP token；token 存在 LangGraph Store 的 `(runtime.context.user_id, "tokens")` 命名空间中，并根据 `expires_in` 过期删除。远端工具名必须进入 `mcp_config.tools`，不能因为服务器“提供了”就全部暴露给模型。
 
 > 当前锁定 `mcp>=1.9.4,<2`。原因是 `langchain-mcp-adapters==0.3.1` 仍依赖 MCP 1.x API；在适配器支持 MCP 2 前，不应单独升级 MCP 主版本。
 
@@ -120,13 +127,12 @@ class MCPConfig(BaseModel):
 
 ## 7. 运行配置的最小检查
 
-不需要模型调用就能验证配置解析和密钥边界；强行调用模型不会增加这部分的可信度：
+不需要模型调用就能验证 context 的配置边界；强行调用模型不会增加这部分的可信度：
 
 ```bash
 uv run python -c '
 from open_deep_research.configuration import Configuration
-config = {"configurable": {"search_api": "none", "allow_clarification": False}}
-settings = Configuration.from_runnable_config(config)
+settings = Configuration(search_api="none", allow_clarification=False)
 assert settings.search_api.value == "none"
 assert settings.allow_clarification is False
 print(settings.model_dump(exclude={"mcp_config"}))

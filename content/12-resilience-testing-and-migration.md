@@ -98,7 +98,7 @@ except Exception as e:
 
 ## 6. 升级到当前 LangGraph API 时的策略
 
-主源码仍使用：
+旧版本主源码使用：
 
 ```python
 StateGraph(..., input=..., output=..., config_schema=...)
@@ -118,16 +118,17 @@ StateGraph(
 迁移原则：
 
 1. 先锁住目前可运行的依赖与行为，升级前后各跑导入、章节真实调用和目标评估。
-2. 先替换 schema 参数，不在同一变更中改状态结构或 prompts。
-3. `RunnableConfig` 到 `context_schema` 的迁移要先确认当前 SDK 的节点签名和平台配置注入方式。
-4. 观察流式输出：输入/输出 schema 不自动隐藏 `stream_mode="values"` 里的内部通道。
+2. 先替换 `input`/`output` 为 `input_schema`/`output_schema`，不在同一变更中改状态结构或 prompts。
+3. `config_schema` 不要机械改名；需要显式业务上下文时，改为 `context_schema` 并把节点签名改为 `Runtime[Context]`。
+4. `RunnableConfig` 仍保留给 callbacks、tags、metadata、`thread_id` 等运行控制；业务配置统一放入 `Runtime.context`。新旧 API 的边界见第 [14 章](/knowledge-notes/docs/langgraph-langchain/14-current-api-migration/)。
+5. 观察流式输出：输入/输出 schema 不自动隐藏 `stream_mode="values"` 里的内部通道。
 
 ## 7. 最小验证命令
 
 ```bash
-uv run python -m compileall -q docs/langgraph-langchain-learning/examples
+uv run python -m compileall -q docs/langgraph-learning/examples
 uv run python -c 'from open_deep_research.deep_researcher import deep_researcher; print(deep_researcher)'
-uv run python docs/langgraph-langchain-learning/examples/08_integrated_mini_researcher.py
+uv run python docs/langgraph-learning/examples/08_integrated_mini_researcher.py
 ```
 
 最后一条会调用真实模型并产生费用。完整 pytest 与 LangSmith evaluation 应在修复 legacy 收集问题、准备好搜索密钥和可控预算后再执行。

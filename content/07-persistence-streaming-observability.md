@@ -31,7 +31,7 @@ LangSmith 是外部观测平台，不改变图本身的状态机制。只要你�
 
 ## 最小真实 Agent
 
-示例文件：[07_persistence_streaming_observability.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/07_persistence_streaming_observability.py)。
+示例文件：[07_persistence_streaming_observability.py](/knowledge-notes/examples/langgraph-langchain/examples/07_persistence_streaming_observability.py)。
 
 它做三件事：
 
@@ -44,7 +44,7 @@ LangSmith 是外部观测平台，不改变图本身的状态机制。只要你�
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/07_persistence_streaming_observability.py
+uv run python docs/langgraph-learning/examples/07_persistence_streaming_observability.py
 ```
 
 预期现象：

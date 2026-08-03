@@ -6,6 +6,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDir = resolve(root, 'content');
 const outputDir = resolve(root, 'src/content/docs');
 const manifestPath = resolve(root, 'content.manifest.json');
+const publicDir = resolve(root, 'public');
+const siteBase = '/knowledge-notes';
 
 export function loadManifest() {
   return JSON.parse(readFileSync(manifestPath, 'utf8'));
@@ -41,8 +43,16 @@ export function validateManifest(manifest) {
       throw new Error(`Document "${id}" is listed in the manifest but content/${id}.md is missing.`);
     }
     for (const resource of doc.resources ?? []) {
-      if (!resource.label || !URL.canParse(resource.url)) {
+      if (!resource.label || !resource.url) {
         throw new Error(`Document "${id}" has an invalid resource entry.`);
+      }
+      if (URL.canParse(resource.url)) continue;
+      if (!resource.url.startsWith(`${siteBase}/`)) {
+        throw new Error(`Document "${id}" has an invalid resource entry.`);
+      }
+      const publicPath = resource.url.slice(siteBase.length).replace(/^\/+/, '');
+      if (publicPath.includes('..') || !existsSync(resolve(publicDir, publicPath))) {
+        throw new Error(`Document "${id}" references missing resource ${resource.url}.`);
       }
     }
   }

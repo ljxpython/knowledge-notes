@@ -7,8 +7,7 @@
 ```python
 deep_researcher_builder = StateGraph(
     AgentState,
-    input=AgentInputState,
-    config_schema=Configuration,
+    input_schema=AgentInputState,
 )
 ```
 
@@ -85,7 +84,7 @@ START -> supervisor -> supervisor_tools --Command--> supervisor 或 END
 对于每个 `ConductResearch`，`supervisor_tools` 调用：
 
 ```python
-researcher_subgraph.ainvoke({...}, config)
+researcher_subgraph.ainvoke({...}, context=runtime.context)
 ```
 
 它将前 `max_concurrent_research_units` 个任务放进 `asyncio.gather`。超过上限的工具调用得到一条 `ToolMessage` 错误说明，而不是偷偷丢掉。
@@ -107,7 +106,7 @@ researcher_tools --Command--> researcher 或 compress_research
 compress_research -> END
 ```
 
-`researcher` 通过 `get_all_tools(config)` 动态获得：
+`researcher` 通过 `get_all_tools(runtime.context, runtime.store)` 动态获得：
 
 1. 始终有 `ResearchComplete` 与 `think_tool`。
 2. 按 `search_api` 增加 Tavily 或模型提供商原生 web search。
@@ -139,15 +138,13 @@ compress_research -> END
 ```python
 result = await deep_researcher.ainvoke(
     {"messages": [HumanMessage(content="比较两个技术方案的关键取舍。")]},
-    {
-        "configurable": {
-            "allow_clarification": False,
-            "search_api": "none",
-            "max_concurrent_research_units": 1,
-            "max_researcher_iterations": 1,
-            "max_react_tool_calls": 1,
-        }
-    },
+    context=Configuration(
+        allow_clarification=False,
+        search_api="none",
+        max_concurrent_research_units=1,
+        max_researcher_iterations=1,
+        max_react_tool_calls=1,
+    ),
 )
 print(result["final_report"])
 ```

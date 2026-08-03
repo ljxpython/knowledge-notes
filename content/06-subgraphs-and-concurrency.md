@@ -25,7 +25,7 @@ research_tasks = [
     researcher_subgraph.ainvoke({
         "researcher_messages": [HumanMessage(content=tool_call["args"]["research_topic"])],
         "research_topic": tool_call["args"]["research_topic"],
-    }, config)
+    }, context=runtime.context)
     for tool_call in allowed_conduct_research_calls
 ]
 
@@ -42,11 +42,11 @@ tool_results = await asyncio.gather(*research_tasks)
 StateGraph(state_schema, context_schema=None, *, input_schema=None, output_schema=None, ...)
 ```
 
-本项目源码仍使用旧别名 `input=...`、`output=...`、`config_schema=...`。读项目时要能看懂旧写法；新示例会使用 `input_schema` / `output_schema`，少学一个马上要废弃的坑。
+当前主实现和示例都使用 `input_schema` / `output_schema`。旧教程里的 `input=...`、`output=...`、`config_schema=...` 只能作为迁移阅读材料，具体对照见第 [14 章](/knowledge-notes/docs/langgraph-langchain/14-current-api-migration/)。
 
 ## 最小真实 Agent
 
-示例文件：[06_subgraphs_and_concurrency.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/06_subgraphs_and_concurrency.py)。
+示例文件：[06_subgraphs_and_concurrency.py](/knowledge-notes/examples/langgraph-langchain/examples/06_subgraphs_and_concurrency.py)。
 
 示例只保留一个 researcher 子图：
 
@@ -62,7 +62,10 @@ researcher_graph = StateGraph(
 
 ```python
 results = await asyncio.gather(
-    *(researcher_graph.ainvoke({"topic": topic}, config) for topic in state["topics"])
+    *(
+        researcher_graph.ainvoke({"topic": topic}, context=runtime.context)
+        for topic in state["topics"]
+    )
 )
 ```
 
@@ -71,7 +74,7 @@ results = await asyncio.gather(
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/06_subgraphs_and_concurrency.py
+uv run python docs/langgraph-learning/examples/06_subgraphs_and_concurrency.py
 ```
 
 预期现象：

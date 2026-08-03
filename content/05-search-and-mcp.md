@@ -2,29 +2,30 @@
 
 ## 学习目标
 
-理解当前项目如何把搜索工具和 MCP 远端工具组装进 researcher 的工具列表，以及为什么工具存在不等于一定会被调用。
+理解当前项目如何把搜索工具和 MCP 远端工具组装进 researcher 的工具列表，以及为什么工具存在不等于一定会被调用。节点从 `Runtime.context` 读取业务配置，工具装配接收同一个 `Configuration` 和 `runtime.store`。
 
 ## 它是什么
 
-搜索工具给 Agent 连接外部信息源，适合当前事件、网页内容和需要来源的研究任务。MCP 是把外部服务以标准工具协议暴露给模型的方式，当前项目通过 `MultiServerMCPClient` 从配置的 MCP server 拉取工具。`get_all_tools(config)` 是本项目的工具入口，它把内置研究工具、搜索工具和 MCP 工具合并成最终给 `bind_tools` 的列表。
+搜索工具给 Agent 连接外部信息源，适合当前事件、网页内容和需要来源的研究任务。MCP 是把外部服务以标准工具协议暴露给模型的方式，当前项目通过 `MultiServerMCPClient` 从配置的 MCP server 拉取工具。`get_all_tools(context, store)` 是本项目的工具入口，它把内置研究工具、搜索工具和 MCP 工具合并成最终给 `bind_tools` 的列表。
 
 ## 当前项目怎么用
 
 `src/open_deep_research/utils.py` 中的工具装配顺序：
 
-1. 固定加入 `ResearchComplete` 和 `think_tool`。
-2. 根据 `Configuration.search_api` 加搜索工具：
+1. 节点从 `runtime.context` 读取 `Configuration`，并把同一个对象传给工具装配函数。
+2. 固定加入 `ResearchComplete` 和 `think_tool`。
+3. 根据 `Configuration.search_api` 加搜索工具：
    - `tavily`：加入本地 `tavily_search` 工具。
    - `openai`：加入 OpenAI 原生 `web_search_preview` 工具描述。
    - `anthropic`：加入 Anthropic 原生 `web_search_20250305` 工具描述。
    - `none`：不加搜索工具。
-3. 调用 `load_mcp_tools(config, existing_tool_names)` 加 MCP 工具。
-4. 跳过与已有工具重名的 MCP 工具。
+4. 调用 `load_mcp_tools(context, store, existing_tool_names)` 加 MCP 工具。
+5. 跳过与已有工具重名的 MCP 工具。
 
 `researcher()` 再做：
 
 ```python
-tools = await get_all_tools(config)
+tools = await get_all_tools(runtime.context, runtime.store)
 research_model = configurable_model.bind_tools(tools)
 response = await research_model.ainvoke(messages)
 ```
@@ -58,11 +59,11 @@ class MCPConfig(BaseModel):
 
 ## 最小真实 Agent
 
-示例文件：[05_search_and_mcp.py](https://github.com/ljxpython/open_deep_research/blob/main/docs/langgraph-langchain-learning/examples/05_search_and_mcp.py)。
+示例文件：[05_search_and_mcp.py](/knowledge-notes/examples/langgraph-langchain/examples/05_search_and_mcp.py)。
 
 这个示例不发起真实搜索，也不连接 MCP server。它用真实模型完成一次工具选择学习：
 
-1. 用 `get_all_tools({"configurable": {"search_api": "none"}})` 装配项目真实工具集合。
+1. 用 `Configuration.from_env()` 构造 context，再用 `Configuration.model_validate(...)` 生成 `search_api="none"` 的无外部调用工具 context。
 2. 只取 `think_tool` 绑定给模型。
 3. 提示模型先调用 `think_tool` 做计划。
 4. 本地执行 `think_tool`，生成 `ToolMessage`。
@@ -73,7 +74,7 @@ class MCPConfig(BaseModel):
 ## 运行
 
 ```bash
-uv run python docs/langgraph-langchain-learning/examples/05_search_and_mcp.py
+uv run python docs/langgraph-learning/examples/05_search_and_mcp.py
 ```
 
 预期现象：

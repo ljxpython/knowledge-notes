@@ -4,7 +4,7 @@ import { z } from 'astro/zod';
 
 const resources = z.array(z.object({
   label: z.string(),
-  url: z.string().url(),
+  url: z.string().refine((value) => URL.canParse(value) || value.startsWith('/knowledge-notes/'), 'Expected an absolute or site-local URL.'),
 })).default([]);
 
 const docs = defineCollection({

@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import DocCard from './DocCard.astro';
+
+interface Props {
+  docs: CollectionEntry<'docs'>[];
+}
+
+const { docs } = Astro.props;
+const topicGroups = [...docs.reduce((groups, doc) => {
+  const key = doc.data.section ?? '其他';
+  const group = groups.get(key) ?? [];
+  group.push(doc);
+  groups.set(key, group);
+  return groups;
+}, new Map<string, CollectionEntry<'docs'>[]>())];
+
+function topicAnchor(value: string) {
+  return value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '');
+}
+---
+
+<div class="topic-groups">
+  {topicGroups.map(([topic, topicDocs]) => (
+    <details class="topic-group" id={topicAnchor(topic)}>
+      <summary class="topic-heading">
+        <span class="topic-heading__title">
+          <span class="section-label">主题</span>
+          <span class="topic-title">{topic}</span>
+        </span>
+        <span class="topic-heading__meta">
+          <span class="collection-count">{topicDocs.length} 篇</span>
+          <span class="topic-toggle" aria-hidden="true"></span>
+        </span>
+      </summary>
+      <div class="card-grid">
+        {topicDocs.map((doc, index) => (
+          <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={index + 1} />
+        ))}
+      </div>
+    </details>
+  ))}
+</div>
