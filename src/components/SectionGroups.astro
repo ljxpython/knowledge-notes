@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import DocCard from './DocCard.astro';
+
+interface Props {
+  docs: CollectionEntry<'docs'>[];
+}
+
+const { docs } = Astro.props;
+const groups = [...docs.reduce((sections, doc) => {
+  const title = doc.data.section ?? 'Other';
+  const group = sections.get(title) ?? [];
+  group.push(doc);
+  sections.set(title, group);
+  return sections;
+}, new Map<string, CollectionEntry<'docs'>[]>())];
+---
+
+<div class="section-groups">
+  {groups.map(([title, sectionDocs]) => (
+    <details class="section-group">
+      <summary>
+        <span class="group-heading"><span class="section-label">小节</span><span class="group-title">{title}</span></span>
+        <span class="disclosure-toggle">{sectionDocs.length} 篇</span>
+      </summary>
+      <div class="card-grid">
+        {sectionDocs.map((doc) => (
+          <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />
+        ))}
+      </div>
+    </details>
+  ))}
+</div>

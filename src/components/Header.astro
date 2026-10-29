@@ -1,17 +1,120 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import SearchModal from './SearchModal.astro';
 import { site, withBase } from '../lib/site';
+
+interface Props {
+  showSidebarToggle?: boolean;
+}
+
+const { showSidebarToggle = false } = Astro.props;
 ---
 
+<div id="header-hover-zone" class="header-hover-zone" aria-hidden="true"></div>
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary navigation">
-    <a href={withBase('/')} class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>{site.navigation.label}</span>
-    </a>
+    <div class="nav-brand-group">
+      {showSidebarToggle && (
+        <button id="sidebar-toggle" class="sidebar-toggle-btn" type="button" aria-label="打开全站章节目录" title="打开全站章节目录">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <span class="sidebar-toggle-label">目录</span>
+        </button>
+      )}
+      <a href={withBase('/')} class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>{site.navigation.label}</span>
+      </a>
+    </div>
     <div class="nav-actions">
+      <SearchModal />
       <a href={site.links.github} target="_blank" rel="noopener" class="quiet-link">GitHub</a>
       <ThemeToggle />
     </div>
   </nav>
 </header>
+
+<script>
+  function setupSmartHeader() {
+    const header = document.querySelector<HTMLElement>('.site-header');
+    const hoverZone = document.getElementById('header-hover-zone');
+    if (!header) return;
+
+    let lastScrollY = window.scrollY;
+    let peekTimer: any = null;
+
+    function handleScroll() {
+      // 如果页面有打开的对话框/模态框（如搜索框、抽屉），不触发隐藏
+      if (document.querySelector('dialog[open]')) return;
+
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+      const html = document.documentElement;
+
+      // 距离顶部 <= 20px 时恢复常驻
+      if (currentY <= 20) {
+        html.classList.remove('nav-hidden');
+        html.classList.remove('nav-peeking');
+        lastScrollY = currentY;
+        return;
+      }
+
+      // 向下滚动超过 10px：自动滑出隐藏
+      if (delta > 10) {
+        if (!html.classList.contains('nav-hidden')) {
+          html.classList.add('nav-hidden');
+          html.classList.remove('nav-peeking');
+        }
+      } 
+      // 向上滚动超过 8px：平滑滑回唤出
+      else if (delta < -8) {
+        html.classList.remove('nav-hidden');
+        html.classList.remove('nav-peeking');
+      }
+
+      lastScrollY = currentY;
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 触顶悬浮自然窥探 (Top Hover Peek)
+    hoverZone?.addEventListener('mouseenter', () => {
+      if (document.documentElement.classList.contains('nav-hidden')) {
+        clearTimeout(peekTimer);
+        document.documentElement.classList.add('nav-peeking');
+      }
+    });
+
+    hoverZone?.addEventListener('mouseleave', () => {
+      if (document.documentElement.classList.contains('nav-peeking')) {
+        clearTimeout(peekTimer);
+        peekTimer = setTimeout(() => {
+          if (!header.matches(':hover')) {
+            document.documentElement.classList.remove('nav-peeking');
+          }
+        }, 300);
+      }
+    });
+
+    header.addEventListener('mouseenter', () => {
+      clearTimeout(peekTimer);
+    });
+
+    header.addEventListener('mouseleave', () => {
+      if (document.documentElement.classList.contains('nav-peeking')) {
+        clearTimeout(peekTimer);
+        peekTimer = setTimeout(() => {
+          if (!hoverZone?.matches(':hover')) {
+            document.documentElement.classList.remove('nav-peeking');
+          }
+        }, 300);
+      }
+    });
+  }
+
+  setupSmartHeader();
+  document.addEventListener('astro:page-load', setupSmartHeader);
+</script>

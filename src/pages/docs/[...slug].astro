@@ -1,38 +1,56 @@
 ---
 import { getCollection, render } from 'astro:content';
 import DocLayout from '../../layouts/DocLayout.astro';
+import { getCollectionConfig } from '../../lib/site';
 
 export async function getStaticPaths() {
   const docs = (await getCollection('docs', ({ data }) => data.published))
-    .sort((a, b) => a.data.collectionOrder - b.data.collectionOrder || a.data.order - b.data.order);
+    .sort((a, b) => {
+      const colA = getCollectionConfig(a.data.collection);
+      const colB = getCollectionConfig(b.data.collection);
+      return colA.order - colB.order || a.data.order - b.data.order;
+    });
 
   return docs.map((doc) => {
+    const colConfig = getCollectionConfig(doc.data.collection);
     const collectionDocs = docs.filter((item) => item.data.collection === doc.data.collection
-      && (doc.data.collection !== 'deep-agents' || item.data.section === doc.data.section));
+      && (colConfig.sectionMode !== 'collapsible' || item.data.section === doc.data.section));
     const index = collectionDocs.findIndex((item) => item.id === doc.id);
 
     return {
-    params: { slug: `${doc.data.collection}/${doc.id}` },
-    props: {
-      doc,
-      prev: index > 0 ? collectionDocs[index - 1] : null,
-      next: index < collectionDocs.length - 1 ? collectionDocs[index + 1] : null,
-    },
-  };
+      params: { slug: `${doc.data.collection}/${doc.id}` },
+      props: {
+        doc,
+        colConfig,
+        prev: index > 0 ? collectionDocs[index - 1] : null,
+        next: index < collectionDocs.length - 1 ? collectionDocs[index + 1] : null,
+      },
+    };
   });
 }
 
-const { doc, prev, next } = Astro.props;
+const { doc, colConfig, prev, next } = Astro.props;
 const { Content, headings } = await render(doc);
+
+function getReadingStats(body = '') {
+  const clean = body.replace(/<\/?[^>]+(>|$)/g, '');
+  const cjk = (clean.match(/[\u4e00-\u9fa5]/g) || []).length;
+  const en = (clean.match(/[a-zA-Z0-9_\-]+/g) || []).length;
+  const words = cjk + en;
+  const minutes = Math.max(1, Math.ceil(cjk / 350 + en / 200));
+  return { words, minutes };
+}
+
+const stats = getReadingStats(doc.body);
 ---
 
 <DocLayout
   id={doc.id}
   collection={doc.data.collection}
-  collectionTitle={doc.data.collectionTitle}
-  collectionNotice={doc.data.collectionNotice}
-  collectionSourceLabel={doc.data.collectionSourceLabel}
-  collectionSourceUrl={doc.data.collectionSourceUrl}
+  collectionTitle={colConfig.title}
+  collectionNotice={colConfig.notice}
+  collectionSourceLabel={colConfig.sourceLabel}
+  collectionSourceUrl={colConfig.sourceUrl}
   title={doc.data.title}
   description={doc.data.description}
   section={doc.data.section}
@@ -40,6 +58,8 @@ const { Content, headings } = await render(doc);
   source={doc.data.source}
   resources={doc.data.resources}
   headings={headings}
+  words={stats.words}
+  minutes={stats.minutes}
   prev={prev ? { collection: prev.data.collection, id: prev.id, title: prev.data.title, section: prev.data.section } : null}
   next={next ? { collection: next.data.collection, id: next.id, title: next.data.title, section: next.data.section } : null}
 >

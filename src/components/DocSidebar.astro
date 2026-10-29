@@ -1,0 +1,475 @@
+---
+import { getCollection } from 'astro:content';
+import { site, withBase } from '../lib/site';
+
+interface Props {
+  currentDocId?: string;
+  currentCollection?: string;
+  isDrawer?: boolean;
+}
+
+const { currentDocId = '', currentCollection = '', isDrawer = false } = Astro.props;
+
+const allDocs = (await getCollection('docs', ({ data }) => data.published))
+  .sort((a, b) => a.data.order - b.data.order);
+
+// 构建三级目录树：一级 (合集) -> 二级 (章节/Section) -> 三级 (文章/Doc)
+const tree = site.collections.slice().sort((a, b) => a.order - b.order).map((col) => {
+  const colDocs = allDocs.filter((d) => d.data.collection === col.id);
+
+  const sectionsMap = new Map<string, typeof colDocs>();
+  for (const doc of colDocs) {
+    const sec = doc.data.section || '常规';
+    if (!sectionsMap.has(sec)) sectionsMap.set(sec, []);
+    sectionsMap.get(sec)!.push(doc);
+  }
+
+  return {
+    collection: col,
+    sections: Array.from(sectionsMap.entries()).map(([sectionName, docs]) => ({
+      sectionName,
+      docs,
+    })),
+    totalCount: colDocs.length,
+    isCurrentCol: col.id === currentCollection,
+  };
+});
+---
+
+<nav class:list={['doc-tree-nav', { 'in-drawer': isDrawer }]} aria-label="全站知识总大纲">
+  <div class="tree-header">
+    <span class="tree-kicker">知识目录</span>
+    <div class="tree-header-actions">
+      <button
+        type="button"
+        class="tree-toggle-all-btn"
+        aria-label="全部折叠"
+        title="全部折叠"
+        data-tooltip="全部折叠"
+      >
+        <svg class="icon-collapse" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="7 20 12 15 17 20"></polyline>
+          <polyline points="7 4 12 9 17 4"></polyline>
+        </svg>
+        <svg class="icon-expand" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="7 15 12 20 17 15"></polyline>
+          <polyline points="7 9 12 4 17 9"></polyline>
+        </svg>
+      </button>
+      {!isDrawer && (
+        <button
+          type="button"
+          class="sidebar-eye-btn"
+          aria-label="锁定或隐藏侧边栏"
+          title="隐藏目录"
+          data-tooltip="隐藏目录"
+        >
+          <svg class="icon-eye-open" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <svg class="icon-eye-closed" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+        </button>
+      )}
+      <span class="tree-badge">{allDocs.length} 篇</span>
+    </div>
+  </div>
+
+  <div class="tree-content">
+    {tree.map(({ collection, sections, totalCount, isCurrentCol }) => (
+      <details class="tree-collection" open={isCurrentCol || !currentCollection}>
+        <summary class="tree-collection-title">
+          <span class="col-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </span>
+          <span class="col-name">{collection.title}</span>
+          <span class="col-count">{totalCount}</span>
+        </summary>
+
+        <div class="tree-sections">
+          {sections.map(({ sectionName, docs }) => (
+            <div class="tree-section-group">
+              <div class="tree-section-header">
+                <span class="section-dot" aria-hidden="true"></span>
+                <span class="section-text">{sectionName}</span>
+              </div>
+
+              <ul class="tree-doc-list">
+                {docs.map((doc) => {
+                  const isCurrent = doc.id === currentDocId && doc.data.collection === currentCollection;
+                  return (
+                    <li class="tree-doc-item">
+                      <a
+                        href={withBase(`/docs/${doc.data.collection}/${doc.id}/`)}
+                        class:list={['tree-doc-link', { 'active': isCurrent }]}
+                        aria-current={isCurrent ? 'page' : undefined}
+                      >
+                        <span class="doc-order">{String(doc.data.order).padStart(2, '0')}</span>
+                        <span class="doc-title">{doc.data.title}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .doc-tree-nav {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .tree-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tree-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .tree-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--paper-warm);
+    color: var(--muted);
+  }
+
+  .tree-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tree-collection {
+    border-radius: 6px;
+  }
+
+  .tree-collection-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--ink);
+    background: transparent;
+    list-style: none;
+    transition: background 160ms ease, color 160ms ease;
+  }
+
+  .tree-collection-title::-webkit-details-marker {
+    display: none;
+  }
+
+  .tree-collection-title:hover {
+    color: var(--accent);
+    background: var(--paper-warm);
+  }
+
+  .col-icon {
+    display: inline-flex;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .col-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .col-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .tree-sections {
+    padding: 8px 0 4px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 1px solid var(--line);
+    margin-left: 14px;
+    margin-top: 6px;
+  }
+
+  .tree-section-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .section-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  .section-text {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tree-doc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .tree-doc-link {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: background 140ms ease, color 140ms ease;
+  }
+
+  .tree-doc-link:hover {
+    color: var(--ink);
+    background: var(--paper-warm);
+  }
+
+  .tree-doc-link.active {
+    color: var(--accent);
+    font-weight: 700;
+    background: var(--accent-soft);
+  }
+
+  .doc-order {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .doc-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tree-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tree-toggle-all-btn {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 140ms ease;
+  }
+
+  .tree-toggle-all-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .tree-toggle-all-btn .icon-expand {
+    display: none;
+  }
+  .tree-toggle-all-btn.collapsed .icon-collapse {
+    display: none;
+  }
+  .tree-toggle-all-btn.collapsed .icon-expand {
+    display: block;
+  }
+
+  .tree-toggle-all-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    right: 0;
+    white-space: nowrap;
+    font-size: 11px;
+    font-family: var(--font-sans);
+    color: var(--paper);
+    background: var(--ink);
+    padding: 3px 7px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 140ms ease, transform 140ms ease;
+    z-index: 50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .tree-toggle-all-btn:hover::after,
+  .sidebar-eye-btn:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sidebar-eye-btn {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 140ms ease;
+  }
+
+  .sidebar-eye-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .sidebar-eye-btn .icon-eye-open {
+    display: none;
+  }
+  .sidebar-eye-btn .icon-eye-closed {
+    display: block;
+  }
+  :global(html.sidebar-peeking) .sidebar-eye-btn .icon-eye-open {
+    display: block;
+  }
+  :global(html.sidebar-peeking) .sidebar-eye-btn .icon-eye-closed {
+    display: none;
+  }
+
+  .sidebar-eye-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    right: 0;
+    white-space: nowrap;
+    font-size: 11px;
+    font-family: var(--font-sans);
+    color: var(--paper);
+    background: var(--ink);
+    padding: 3px 7px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 140ms ease, transform 140ms ease;
+    z-index: 50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(html.sidebar-peeking) .sidebar-eye-btn::after {
+    content: '锁定目录';
+  }
+</style>
+
+<script>
+  function setupTreeToggles() {
+    document.querySelectorAll<HTMLElement>('.doc-tree-nav').forEach((nav) => {
+      const toggleBtn = nav.querySelector<HTMLButtonElement>('.tree-toggle-all-btn');
+      const detailsList = nav.querySelectorAll<HTMLDetailsElement>('details.tree-collection');
+      if (!toggleBtn || detailsList.length === 0) return;
+
+      const updateBtnState = () => {
+        const anyOpen = Array.from(detailsList).some((d) => d.open);
+        if (anyOpen) {
+          toggleBtn.classList.remove('collapsed');
+          toggleBtn.setAttribute('data-tooltip', '全部折叠');
+          toggleBtn.setAttribute('title', '全部折叠');
+          toggleBtn.setAttribute('aria-label', '全部折叠');
+        } else {
+          toggleBtn.classList.add('collapsed');
+          toggleBtn.setAttribute('data-tooltip', '全部展开');
+          toggleBtn.setAttribute('title', '全部展开');
+          toggleBtn.setAttribute('aria-label', '全部展开');
+        }
+      };
+
+      toggleBtn.onclick = () => {
+        const anyOpen = Array.from(detailsList).some((d) => d.open);
+        detailsList.forEach((d) => (d.open = !anyOpen));
+        updateBtnState();
+      };
+
+      detailsList.forEach((d) => {
+        d.addEventListener('toggle', updateBtnState);
+      });
+
+      updateBtnState();
+    });
+
+    // 小眼睛按钮：在锁定与隐藏之间切换
+    document.querySelectorAll<HTMLButtonElement>('.sidebar-eye-btn').forEach((btn) => {
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        const html = document.documentElement;
+        if (html.classList.contains('sidebar-peeking') || html.classList.contains('sidebar-collapsed')) {
+          // 锁定显示状态：清除隐藏与轻显临时态，常驻固定
+          html.classList.remove('sidebar-collapsed');
+          html.classList.remove('sidebar-peeking');
+          localStorage.setItem('knowledge-site-sidebar-collapsed', 'false');
+          btn.setAttribute('data-tooltip', '隐藏目录');
+          btn.setAttribute('title', '隐藏目录');
+        } else {
+          // 隐藏状态：收缩隐藏，小眼睛随面板退场消失
+          html.classList.add('sidebar-collapsed');
+          html.classList.remove('sidebar-peeking');
+          localStorage.setItem('knowledge-site-sidebar-collapsed', 'true');
+        }
+      };
+    });
+  }
+
+  setupTreeToggles();
+  document.addEventListener('astro:page-load', setupTreeToggles);
+</script>

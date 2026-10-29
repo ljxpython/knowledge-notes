@@ -6,14 +6,14 @@ interface Props {
 const { value } = Astro.props;
 ---
 
-<button type="button" class="copy-button" data-copy={value} aria-label="Copy command">Copy</button>
+<button type="button" class="copy-button" data-copy={value} aria-label="复制命令">复制</button>
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
     button.addEventListener('click', async () => {
       await navigator.clipboard.writeText(button.dataset.copy ?? '');
       const label = button.textContent;
-      button.textContent = 'Copied';
+      button.textContent = '已复制';
       window.setTimeout(() => { button.textContent = label; }, 1200);
     });
   });

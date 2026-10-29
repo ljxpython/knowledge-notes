@@ -4,21 +4,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import DocCard from '../../components/DocCard.astro';
-import TopicGroups from '../../components/TopicGroups.astro';
-import { site, withBase } from '../../lib/site';
+import SectionGroups from '../../components/SectionGroups.astro';
+import { site, withBase, getCollectionConfig } from '../../lib/site';
 
 export async function getStaticPaths() {
   const docs = (await getCollection('docs', ({ data }) => data.published))
-    .sort((a, b) => a.data.collectionOrder - b.data.collectionOrder || a.data.order - b.data.order);
-  const collections = [...new Map(docs.map((doc) => [doc.data.collection, {
-    id: doc.data.collection,
-    title: doc.data.collectionTitle,
-    description: doc.data.collectionDescription,
-    order: doc.data.collectionOrder,
-    notice: doc.data.collectionNotice,
-  }])).values()].sort((a, b) => a.order - b.order);
+    .sort((a, b) => {
+      const colA = getCollectionConfig(a.data.collection);
+      const colB = getCollectionConfig(b.data.collection);
+      return colA.order - colB.order || a.data.order - b.data.order;
+    });
 
-  return collections.map((collection) => ({
+  return site.collections.map((collection) => ({
     params: { collection: collection.id },
     props: {
       collection,
@@ -32,25 +29,23 @@ const { collection, docs } = Astro.props;
 
 <BaseLayout title={`${collection.title} | ${site.title}`} description={collection.description}>
   <Header />
-  <main class="notes collection-page">
+  <main class="notes collection-page" data-pagefind-body>
     <section class="section-block">
       <div class="section-heading">
         <div>
-          <p class="section-label">知识集合</p>
+          <p class="section-label">合集</p>
           <h1>{collection.title}</h1>
           <p>{collection.description}</p>
         </div>
-        <a class="collection-count" href={withBase('/')}>全部集合</a>
+        <a class="collection-count" href={withBase('/')}>返回全部合集</a>
       </div>
       {collection.notice && (
         <div class="safety-note">
-          <strong>阅读提示</strong>
+          <strong>提示</strong>
           <span>{collection.notice}</span>
         </div>
       )}
-      {collection.id === 'deep-agents' ? (
-        <TopicGroups docs={docs} />
-      ) : (
+      {collection.sectionMode === 'collapsible' ? <SectionGroups docs={docs} /> : (
         <div class="card-grid">
           {docs.map((doc) => (
             <DocCard collection={doc.data.collection} id={doc.id} title={doc.data.title} description={doc.data.description} order={doc.data.order} />

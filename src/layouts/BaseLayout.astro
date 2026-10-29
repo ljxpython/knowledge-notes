@@ -26,6 +26,13 @@ const {
         const stored = localStorage.getItem('knowledge-site-theme');
         const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         document.documentElement.dataset.theme = stored || (dark ? 'dark' : 'light');
+
+        if (localStorage.getItem('knowledge-site-toc-collapsed') === 'true') {
+          document.documentElement.classList.add('toc-collapsed');
+        }
+        if (localStorage.getItem('knowledge-site-sidebar-collapsed') === 'true') {
+          document.documentElement.classList.add('sidebar-collapsed');
+        }
       })();
     </script>
   </head>

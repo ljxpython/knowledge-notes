@@ -1,34 +1,51 @@
 ---
 import { readFileSync } from 'node:fs';
-import { relative, resolve, sep } from 'node:path';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { site } from '../lib/site';
 
 interface Props {
   resources: Array<{ label: string; url: string }>;
 }
 
 const { resources } = Astro.props;
-const publicDir = resolve(process.cwd(), 'public');
-const siteBase = '/knowledge-notes';
-const renderedResources = resources.map((resource) => {
-  if (!resource.url.startsWith(`${siteBase}/examples/`)) return resource;
-  const file = resolve(publicDir, resource.url.slice(siteBase.length + 1));
-  if (!file.startsWith(`${publicDir}${sep}`)) return resource;
-  return { ...resource, code: readFileSync(file, 'utf8'), path: relative(publicDir, file) };
-});
+const siteBase = site.base.replace(/\/$/, '');
+const publicDir = resolve(fileURLToPath(new URL('../../public/', import.meta.url)));
+const codeExtensions = new Set(['.js', '.mjs', '.ts', '.tsx', '.jsx', '.py']);
+
+function localCode(resource: { label: string; url: string }) {
+  if (!resource.url.startsWith(`${siteBase}/`)) return null;
+
+  try {
+    const relativePath = decodeURIComponent(resource.url.slice(siteBase.length + 1));
+    if (!relativePath || relativePath.split('/').includes('..')) return null;
+
+    const filePath = resolve(publicDir, relativePath);
+    const extension = filePath.slice(filePath.lastIndexOf('.'));
+    if (!filePath.startsWith(`${publicDir}/`) || !codeExtensions.has(extension)) return null;
+
+    return { ...resource, code: readFileSync(filePath, 'utf8') };
+  } catch {
+    return null;
+  }
+}
 ---
 
-{renderedResources.length > 0 && (
+{resources.length > 0 && (
   <section class="resources">
-    <h2>相关资源</h2>
+    <h2>参考资源与示例代码</h2>
     <ul>
-      {renderedResources.map((resource) => resource.code ? (
-        <li>
-          <details class="resource-code">
-            <summary>{resource.label} <span class="topic-toggle" aria-hidden="true"></span></summary>
-            <pre><code>{resource.code}</code></pre>
-          </details>
-        </li>
-      ) : <li><a href={resource.url} target="_blank" rel="noopener">{resource.label} <span aria-hidden="true">↗</span></a></li>)}
+      {resources.map((resource) => {
+        const codeResource = localCode(resource);
+        return codeResource ? (
+          <li class="resource-code">
+            <details>
+              <summary>{codeResource.label}</summary>
+              <pre><code>{codeResource.code}</code></pre>
+            </details>
+          </li>
+        ) : <li><a href={resource.url} target="_blank" rel="noopener">{resource.label} <span aria-hidden="true">↗</span></a></li>;
+      })}
     </ul>
   </section>
 )}

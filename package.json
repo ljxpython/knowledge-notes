@@ -11,7 +11,8 @@
     "predev": "node scripts/prep-content.mjs",
     "prebuild": "node scripts/prep-content.mjs",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
+    "build:search": "pagefind --site dist",
     "preview": "astro preview",
     "assets:check": "node scripts/validate-assets.mjs",
     "test": "node --test scripts/*.test.mjs"
@@ -23,6 +24,8 @@
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
-    "sharp": "0.35.3"
+    "pagefind": "^1.5.2",
+    "sharp": "0.35.3",
+    "yaml": "^2.9.1"
   }
 }

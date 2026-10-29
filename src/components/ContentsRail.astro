@@ -1,34 +1,51 @@
 ---
 interface Props {
   headings: Array<{ depth: number; slug: string; text: string }>;
+  mode?: 'desktop' | 'mobile' | 'both';
 }
 
-const { headings } = Astro.props;
+const { headings, mode = 'both' } = Astro.props;
 const items = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 ---
 
 {items.length > 0 && (
   <>
-    <details class="toc-mobile">
-      <summary>本页目录</summary>
-      <ul>
-        {items.map((item) => (
-          <li class:list={{ nested: item.depth === 3 }}>
-            <a href={`#${item.slug}`} data-toc={item.slug}>{item.text}</a>
-          </li>
-        ))}
-      </ul>
-    </details>
-    <nav class="toc-desktop" aria-label="本页目录">
-      <p>本页目录</p>
-      <ul>
-        {items.map((item) => (
-          <li class:list={{ nested: item.depth === 3 }}>
-            <a href={`#${item.slug}`} data-toc={item.slug}>{item.text}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    {(mode === 'mobile' || mode === 'both') && (
+      <details class="toc-mobile">
+        <summary>本页目录</summary>
+        <ul>
+          {items.map((item) => (
+            <li class:list={{ nested: item.depth === 3 }}>
+              <a href={`#${item.slug}`} data-toc={item.slug}>{item.text}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+    {(mode === 'desktop' || mode === 'both') && (
+      <nav class="toc-desktop" aria-label="本页目录">
+        <div class="toc-desktop-header">
+          <p class="toc-desktop-title">本页目录</p>
+          <button id="toc-hide-btn" class="toc-hide-btn" type="button" aria-label="锁定或隐藏本页大纲" title="隐藏大纲" data-tooltip="隐藏大纲">
+            <svg class="icon-eye-open" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg class="icon-eye-closed" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <ul>
+          {items.map((item) => (
+            <li class:list={{ nested: item.depth === 3 }}>
+              <a href={`#${item.slug}`} data-toc={item.slug}>{item.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
   </>
 )}
 
@@ -54,4 +71,30 @@ const items = headings.filter((heading) => heading.depth === 2 || heading.depth 
     .map((id) => document.getElementById(id))
     .filter((node): node is HTMLElement => node !== null)
     .forEach((node) => observer.observe(node));
+
+  const mobileDetails = document.querySelector<HTMLDetailsElement>('.toc-mobile');
+  mobileDetails?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileDetails.removeAttribute('open');
+    });
+  });
+
+  const hideBtn = document.getElementById('toc-hide-btn');
+  hideBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const html = document.documentElement;
+    if (html.classList.contains('toc-peeking') || html.classList.contains('toc-collapsed')) {
+      // 锁定常驻状态
+      html.classList.remove('toc-collapsed');
+      html.classList.remove('toc-peeking');
+      localStorage.setItem('knowledge-site-toc-collapsed', 'false');
+      hideBtn.setAttribute('data-tooltip', '隐藏大纲');
+      hideBtn.setAttribute('title', '隐藏大纲');
+    } else {
+      // 隐藏状态：收缩退场
+      html.classList.add('toc-collapsed');
+      html.classList.remove('toc-peeking');
+      localStorage.setItem('knowledge-site-toc-collapsed', 'true');
+    }
+  });
 </script>
